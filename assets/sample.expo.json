@@ -1,0 +1,30 @@
+    {
+        "__COMMAND__1": "Permissions.askAsync(Permissions.LOCATION)",
+        "__RESPONSE__1": {
+            "expires": "never",
+            "permissions": {
+                "location": {
+                    "android": {
+                        "scope": "fine"
+                    },
+                    "expires": "never",
+                    "status": "granted"
+                }
+            },
+            "status": "granted"
+        },
+
+        "__COMMAND__2": "Location.getCurrentPositionAsync()",
+        "__RESPONSE__2": {
+            "coords": {
+                "accuracy": 14.600000381469727,
+                "altitude": 301.6000061035156,
+                "heading": 0,
+                "latitude": 43.4531637,
+                "longitude": -80.4925639,
+                "speed": 0
+            },
+            "mocked": false,
+            "timestamp": 1567922377566
+        }
+    }

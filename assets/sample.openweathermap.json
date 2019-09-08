@@ -1,0 +1,185 @@
+
+{
+    "__seperator__1": "=====================================================================================",
+    "__TITLE__1": "axios response: config Object",
+
+    "config": {
+        "adapter": ["Function xhrAdapter"
+        ],
+        "data": "undefined",
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        },
+        "maxContentLength": -1,
+        "method": "get",
+        "timeout": 0,
+        "transformRequest": [
+            ["Function transformRequest"
+            ]
+        ],
+        "transformResponse": [
+            ["Function transformResponse"
+            ]
+        ],
+        "url": "http://api.openweathermap.org/data/2.5/weather?lat=43.4531654&lon=-80.492552&APPID=c787ac53f8cd62c85720a5e465fbdc2e&units=metric",
+        "validateStatus": ["Function validateStatus"
+        ],
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN"
+    },
+    
+    "__seperator__2": "=====================================================================================",
+    "__TITLE__2": "axios response: data Object (weather data from openweathermap.org) with request of http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}&units=metric",
+    
+    "data": {
+        "base": "stations",
+        "clouds": {
+            "all": 75
+        },
+        "cod": 200,
+        "coord": {
+            "lat": 43.45,
+            "lon": -80.49
+        },
+        "dt": 1567958730,
+        "id": 6176823,
+        "main": {
+            "humidity": 72,
+            "pressure": 1020,
+            "temp": 17.37,
+            "temp_max": 18.89,
+            "temp_min": 15.56
+        },
+        "name": "Waterloo",
+        "sys": {
+            "country": "CA",
+            "id": 836,
+            "message": 0.0069,
+            "sunrise": 1567940011,
+            "sunset": 1567986377,
+            "type": 1
+        },
+        "timezone": -14400,
+        "visibility": 14484,
+        "weather": [
+            {
+                "description": "broken clouds",
+                "icon": "04d",
+                "id": 803,
+                "main": "Clouds"
+            }
+        ],
+        "wind": {
+            "deg": 10,
+            "speed": 3.1
+        }
+    },
+    
+    "__seperator__3": "=====================================================================================",
+    "__TITLE__3": "axios response: headers Object",
+
+    "headers": {
+        "access-control-allow-credentials": "true",
+        "access-control-allow-methods": "GET, POST",
+        "access-control-allow-origin": "*",
+        "cache-control": "public, max-age=0",
+        "connection": "keep-alive",
+        "content-length": "465",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sun, 08 Sep 2019 16:06:53 GMT",
+        "server": "openresty",
+        "x-cache-key": "/data/2.5/weather?APPID=c787ac53f8cd62c85720a5e465fbdc2e&lat=43.45&lon=-80.49&units=metric"
+    },
+
+    "__seperator__4": "=====================================================================================",
+    "__TITLE__4": "axios response: request Object - XMLHttpRequest",
+
+    "request": {
+        "DONE": 4,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "OPENED": 1,
+        "UNSENT": 0,
+        "_aborted": false,
+        "_cachedResponse": "undefined",
+        "_hasError": false,
+        "_headers": {
+            "accept": "application/json, text/plain, */*"
+        },
+        "_incrementalEvents": false,
+        "_lowerCaseResponseHeaders": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-methods": "GET, POST",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=0",
+            "connection": "keep-alive",
+            "content-length": "465",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Sun, 08 Sep 2019 16:06:53 GMT",
+            "server": "openresty",
+            "x-cache-key": "/data/2.5/weather?APPID=c787ac53f8cd62c85720a5e465fbdc2e&lat=43.45&lon=-80.49&units=metric"
+        },
+        "_method": "GET",
+        "_requestId": null,
+        "_response": "{\"coord\":{\"lon\":-80.49,\"lat\":43.45},\"weather\":[{\"id\":803,\"main\":\"Clouds\",\"description\":\"broken clouds\",\"icon\":\"04d\"}],\"base\":\"stations\",\"main\":{\"temp\":17.37,\"pressure\":1020,\"humidity\":72,\"temp_min\":15.56,\"temp_max\":18.89},\"visibility\":14484,\"wind\":{\"speed\":3.1,\"deg\":10},\"clouds\":{\"all\":75},\"dt\":1567958730,\"sys\":{\"type\":1,\"id\":836,\"message\":0.0069,\"country\":\"CA\",\"sunrise\":1567940011,\"sunset\":1567986377},\"timezone\":-14400,\"id\":6176823,\"name\":\"Waterloo\",\"cod\":200}",
+        "_responseType": "",
+        "_sent": true,
+        "_subscriptions": [],
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_url": "http://api.openweathermap.org/data/2.5/weather?lat=43.4531654&lon=-80.492552&APPID=c787ac53f8cd62c85720a5e465fbdc2e&units=metric",
+        "readyState": 4,
+        "responseHeaders": {
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "GET, POST",
+            "Access-Control-Allow-Origin": "*",
+            "Cache-Control": "public, max-age=0",
+            "Connection": "keep-alive",
+            "Content-Length": "465",
+            "Content-Type": "application/json; charset=utf-8",
+            "Date": "Sun, 08 Sep 2019 16:06:53 GMT",
+            "Server": "openresty",
+            "X-Cache-Key": "/data/2.5/weather?APPID=c787ac53f8cd62c85720a5e465fbdc2e&lat=43.45&lon=-80.49&units=metric"
+        },
+        "responseURL": "http://api.openweathermap.org/data/2.5/weather?lat=43.4531654&lon=-80.492552&APPID=c787ac53f8cd62c85720a5e465fbdc2e&units=metric",
+        "status": 200,
+        "timeout": 0,
+        "__comment__upload": "upload: XMLHttpRequestEventTarget Object",
+        "upload": {
+            "Symbol(listeners)": {}
+        },
+        "withCredentials": true,
+          "Symbol(listeners)": {
+            "abort": {
+                "kind": 3,
+                "listener": ["Function handleAbort"
+                ],
+                "next": null
+            },
+            "error": {
+                "kind": 3,
+                "listener": ["Function handleError"
+                ],
+                "next": null
+            },
+            "readystatechange": {
+                "kind": 3,
+                "listener": ["Function handleLoad"
+                ],
+                "next": null
+            },
+            "timeout": {
+                "kind": 3,
+                "listener": ["Function handleTimeout"
+                ],
+                "next": null
+            }
+        }
+    },
+
+    "__seperator__5": "=====================================================================================",
+    "__TITLE__5": "axios response: status",
+    
+    "status": 200,
+    "statusText": "undefined"
+}
