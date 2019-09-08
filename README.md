@@ -1,14 +1,15 @@
 # react-native-weather
 Learning React Native by Building a Simple Weather App
 
-## Setup
+## Setup from scratch
 * Install Expo CLI
 ```bash
 ~$ npm install -g expo-cli
 ~$ expo init weather-app
 ```
+* Create a new repository on github  
 
-* Connect to git repository
+* Connect weather-app to git repository
 ```bash
 ~$ git remote add origin https://github.com/jaeyp/react-native-weather  
 ~$ git pull origin master --allow-unrelated-histories  
@@ -22,6 +23,17 @@ Learning React Native by Building a Simple Weather App
 * Install axios (Promise based HTTP client)
 ```bash
 ~$ yarn add axios
+```
+
+## Setup
+* Clone project
+```bash
+~$ git clone https://github.com/jaeyp/react-native-weather
+```
+
+* Install packages
+```bash
+~$ yarn install
 ```
 
 ## Run the app
