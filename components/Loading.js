@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Location from 'expo-location';
 
 export default function Loading() {
     return (
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fdf6aa',
-        //alignItems: 'center',
         justifyContent: 'flex-end',
         paddingHorizontal: 30,
         paddingVertical: 100,
