@@ -1,2 +1,2 @@
 # react-native-weather
-Simple weather app for ios and android
+Learning React Native by Building a Simple Weather App
