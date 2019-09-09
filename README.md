@@ -25,6 +25,11 @@ Learning React Native by Building a Simple Weather App
 ~$ yarn add axios
 ```
 
+* Install prop-types
+```bash
+~$ yarn add prop-types
+```
+
 ## Setup
 * Clone project
 ```bash
