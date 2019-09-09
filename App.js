@@ -6,6 +6,9 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 
+import Animations from './assets/animations';
+import * as Animatable from 'react-native-animatable';
+
 const API_KEY = 'c787ac53f8cd62c85720a5e465fbdc2e';
 
 export default class App extends React.Component {
@@ -71,6 +74,11 @@ export default class App extends React.Component {
 		}
 	}
 	componentDidMount() {
+        Animatable.initializeRegistryWithDefinitions({
+            glow: Animations.glow,
+            rotate: Animations.rotate
+        });
+
         this.getLocation()          // 1. Get Location data
             .then(this.getWeather)  // 2. Get Weather data
             .then(w => { console.log('Got weather data successfully:'); console.log(w); })

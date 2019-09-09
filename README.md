@@ -30,6 +30,16 @@ Learning React Native by Building a Simple Weather App
 ~$ yarn add prop-types
 ```
 
+* Animation
+```bash
+~$ yarn add react-native-animatable
+```
+
+* Styles
+```bash
+~$ expo install expo-linear-gradient
+```
+
 ## Setup
 * Clone project
 ```bash
@@ -45,5 +55,3 @@ Learning React Native by Building a Simple Weather App
 ```bash
 ~$ yarn start
 ```
-
-
