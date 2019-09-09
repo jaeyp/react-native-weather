@@ -76,7 +76,19 @@ export default class App extends React.Component {
 	componentDidMount() {
         Animatable.initializeRegistryWithDefinitions({
             glow: Animations.glow,
-            rotate: Animations.rotate
+            rotate: Animations.rotate,
+            flow: Animations.flow,
+            flashBig: Animations.flashBig,
+            flashSmallL: Animations.flashSmallL,
+            flashSmallR: Animations.flashSmallR,
+            raindrop: Animations.raindrop,
+            raindrop2: Animations.raindrop2,
+            raindrop3: Animations.raindrop3,
+            raindrop4: Animations.raindrop4,
+            snowdrop: Animations.snowdrop,
+            snowdrop2: Animations.snowdrop2,
+            snowdrop3: Animations.snowdrop3,
+            snowdrop4: Animations.snowdrop4,
         });
 
         this.getLocation()          // 1. Get Location data
