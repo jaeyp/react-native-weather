@@ -40,15 +40,6 @@ const getAniAtmosphere = id => {
             break;
     }
 }
-const getAniFlashBig = () => {
-    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashBig' easing="linear" iterationCount='infinite' />;
-}
-const getAniFlashSmallL = () => {
-    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallL' easing="linear" iterationCount='infinite' />;
-}
-const getAniFlashSmallR = () => {
-    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallR' easing="linear" iterationCount='infinite' />;
-}
 const getAniError = id => {
     switch(id) {
         default:
@@ -60,23 +51,6 @@ const getAniError = id => {
                 <Text style={styles.temperature}>{data.temperature.current}&#176;</Text>
             </LinearGradient>
             );
-    }
-}
-
-const getAniThunderstorm = id => {
-    switch(id) {
-        case 200: // thunderstorm with light rain
-        case 201: // thunderstorm with rain
-        case 202: // thunderstorm with heavy rain
-        default:
-            return (
-            <View style={styles.halfContainer}>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='sunLeft' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={40} animation='cloudRight' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-            </View>);
     }
 }
 

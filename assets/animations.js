@@ -388,7 +388,7 @@ module.exports = {
             translateY: 24,
         }
     },
-    raindrop: {
+    raindropMid: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.8)',
@@ -411,7 +411,7 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    raindrop2: {
+    raindropLeft: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.8)',
@@ -434,7 +434,7 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    raindrop3: {
+    raindropRight: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.8)',
@@ -457,7 +457,7 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    raindrop4: {
+    raindropMidSmall: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.4)',
@@ -480,7 +480,7 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    raindrop5: {
+    raindropLeftSmall: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.4)',
@@ -503,7 +503,7 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    raindrop6: {
+    raindropRightSmall: {
         0: {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.4)',
@@ -522,6 +522,52 @@ module.exports = {
             scale: 1,
             color: 'rgba(64, 164, 224, 0.4)',
             translateX: -32,
+            translateY: 50,
+            rotate: '110deg',
+        }
+    },
+    raindropMidLeft: {
+        0: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 10,
+            translateY: 10,
+            rotate: '110deg',
+        },
+        0.5: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 4,
+            translateY: 30,
+            rotate: '110deg',
+        },
+        1: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -2,
+            translateY: 50,
+            rotate: '110deg',
+        }
+    },
+    raindropMidRight: {
+        0: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -10,
+            translateY: 10,
+            rotate: '110deg',
+        },
+        0.5: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -16,
+            translateY: 30,
+            rotate: '110deg',
+        },
+        1: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -22,
             translateY: 50,
             rotate: '110deg',
         }
