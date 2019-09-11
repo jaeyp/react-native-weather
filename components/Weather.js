@@ -1,38 +1,153 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Alert } from "react-native";
 import PropTypes from "prop-types";
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
+import animationAPIs from '../assets/animationAPIs';
+import gradientTable from '../assets/dataTables';
+import { screenH, screenW } from './Loading';
+
 const AnimatedIconIonicons = Animatable.createAnimatableComponent(Ionicons)
 const AnimatedIconFontAwesome = Animatable.createAnimatableComponent(FontAwesome)
 
-export default function Weather({data}) {
-    // water (Entypo), minus (Entypo), tint (FontAwesome), minus (FontAwesome), flash (FontAwesome), md-snow (Ionicons), ios-star (Ionicons), star (AntDesign) 
-    // dehaze (MaterialIcons), line-weight (MaterialIcons), ios-moon (Ionicons), ms-moon (Ionicons)
+
+const getAniDrizzle = id => {
+    switch(id) {
+        default:
+            return (
+            <View>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            </View>
+            );
+            break;
+    }
+}
+const getAniRain = id => {
+    switch(id) {
+        default:
+            return (
+            <View>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            </View>
+            );
+            break;
+    }
+}
+const getAniSnow = id => {
+    switch(id) {
+        default:
+            return (
+            <View>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop' delay={0} duration={1000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop2' delay={200} duration={1000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop3' delay={400} duration={1000} easing="linear" iterationCount='infinite' />
+            </View>
+            );
+            break;
+    }
+}
+const getAniAtmosphere = id => {
+    switch(id) {
+        default:
+            return (
+            <View>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            </View>
+            );
+            break;
+    }
+}
+const getAniFlashBig = () => {
+    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashBig' easing="linear" iterationCount='infinite' />;
+}
+const getAniFlashSmallL = () => {
+    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallL' easing="linear" iterationCount='infinite' />;
+}
+const getAniFlashSmallR = () => {
+    return <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallR' easing="linear" iterationCount='infinite' />;
+}
+const getAniError = id => {
+    switch(id) {
+        default:
+            return (
+            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+                <Text style={styles.temperature}>{data.temperature.current}&#176;</Text>
+            </LinearGradient>
+            );
+    }
+}
+
+const getAniThunderstorm = id => {
+    switch(id) {
+        case 200: // thunderstorm with light rain
+        case 201: // thunderstorm with rain
+        case 202: // thunderstorm with heavy rain
+        default:
+            return (
+            <View style={styles.halfContainer}>
+                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='sunLeft' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={40} animation='cloudRight' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            </View>);
+    }
+}
+
+const getAnimaion = d => {
+    return animationAPIs[d.weather.id]((d.dt.tod=="Evening" || d.dt.tod=="Midnight") ? true : false);
+}
+const getTemperature = temp => {
+    return (<Text style={styles.temperature}>{temp}&#176;</Text>);
+}
+const getScreen = (data, fn) => {
     return (
-        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
-            <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-            <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-            {/*
-            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashBig' easing="linear" iterationCount='infinite' />
-            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallL' easing="linear" iterationCount='infinite' />
-            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='flashSmallR' easing="linear" iterationCount='infinite' />
-            */}
-            {/*
-            <AnimatedIconFontAwesome style={styles.drop} name={'tint'} size={20} animation='raindrop' delay={0} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconFontAwesome style={styles.drop} name={'tint'} size={20} animation='raindrop2' delay={300} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconFontAwesome style={styles.drop} name={'tint'} size={20} animation='raindrop3' delay={600} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconFontAwesome style={styles.drop} name={'tint'} size={20} animation='raindrop4' delay={900} duration={1000} easing="linear" iterationCount='infinite' />
-            */}
-            <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop' delay={0} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop2' delay={250} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop3' delay={500} duration={1000} easing="linear" iterationCount='infinite' />
-            <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop4' delay={750} duration={1000} easing="linear" iterationCount='infinite' />
-            <Text style={styles.temperature}>{data.temperature.current}&#176;</Text>
+        <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
+            {getAnimaion(data)}
+            {getTemperature(data.temperature.current)}
+            
+            <View style={styles.halfContainer}>
+                {/* Supports touch screen */}
+                <TouchableOpacity style={styles.button} onPress={() => fn(data.dt.tod)}>
+                    <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
+                </TouchableOpacity>
+                <Text style={styles.region}>{data.region}, {data.country}</Text>
+                <Text style={styles.description}>{data.weather.description}</Text>
+                <Text style={styles.wind}>{data.wind.speed} meter/sec</Text>
+            </View>
         </LinearGradient>
     );
+}
+
+//export default function Weather({data}) {
+export default class Weather extends React.Component {
+    _onPressReload = (tod) => {
+        // reload: passing function for reloading weather info.
+        // this function should be an arrow function to avoid this binding since arrow function never change its binding.
+        this.props.fnReload(tod);
+    }
+    render() {
+        return getScreen(this.props.data, this._onPressReload);
+        /**
+         * If _onPressReload() is not an arrow function but a normal function,
+         * We must bind 'this' to access current this inside of the function. 
+         * Like this,
+         * return getScreen(this.props.data, this._onPressButton.bind(this));
+         */
+    }
 }
 
 Weather.propTypes = {
@@ -54,7 +169,7 @@ Weather.propTypes = {
         cloudiness: PropTypes.number.isRequired,
         visibility: PropTypes.number.isRequired,
         wind: PropTypes.shape({
-            deg: PropTypes.number.isRequired,
+            deg: PropTypes.number,
             speed: PropTypes.number.isRequired,
         }),
         dt: PropTypes.shape({
@@ -62,23 +177,30 @@ Weather.propTypes = {
             forecast: PropTypes.instanceOf(Date).isRequired,
             sunrise: PropTypes.instanceOf(Date).isRequired,
             sunset: PropTypes.instanceOf(Date).isRequired,
+            tod: PropTypes.string.isRequired,
         })
     }).isRequired
 }
 
-const screenW = Dimensions.get('window').width;
-const screenH = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: '#94CEF2',
         justifyContent: "center",
         alignItems: "center"
     },
     halfContainer: {
-        flex: 1,
+        flex: 2,
         justifyContent: "center",
         alignItems: "center"
+    },
+    button: {
+        opacity: 0.2,
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        padding: 6,
+        marginTop: 32,
+        marginBottom: 32,
+        borderRadius: 30,
     },
     temperature: {
         color: 'white',
@@ -87,40 +209,29 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: screenH / 2 - 130
     },
-    sunny: {
-        position: "absolute",
-        top: screenH / 2 - 250,
-        start: screenW / 2 - 70,
-        color: 'rgba(255, 168, 34, 0.8)'
+    region: {
+        color: 'white',
+        fontSize: 24,
+        opacity: 0.5,
+        fontWeight: 'bold',
+        top: screenH / 4,
     },
-    cloud: {
-        position: "absolute",
-        top: screenH / 2 - 240,
-        color: 'rgba(236, 245, 246, 0.8)'   // #ECF5F6
+    time: {
+        color: 'white',
+        fontSize: 14,
+        opacity: 0.5,
+        fontWeight: 'bold',
     },
-    cloud2: {
-        position: "absolute",
-        top: screenH / 2 - 240,
-        color: 'rgba(181, 199, 221, 0.8)'   // #B5C7DD
+    description: {
+        color: 'white',
+        fontSize: 28,
+        fontWeight: 'bold',
     },
-    cloud3: {
-        position: "absolute",
-        top: screenH / 2 - 240,
-        color: 'rgba(158, 169, 179, 0.9)'   // #9EA9B3
-    },
-    cloud4: {
-        position: "absolute",
-        top: screenH / 2 - 240,
-        color: 'rgba(112, 125, 151, 0.9)'   // #707D97
-    },
-    flash: {
-        position: "absolute",
-        top: screenH / 2 - 180,
-        color: 'yellow'
-    },
-    drop: {
-        position: "absolute",
-        top: screenH / 2 - 180
+    wind: {
+        color: 'white',
+        fontSize: 18,
+        opacity: 0.5,
+        fontWeight: 'bold',
     }
 });
 
