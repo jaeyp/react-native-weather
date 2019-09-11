@@ -11,33 +11,6 @@ import { screenH, screenW } from './Loading';
 const AnimatedIconIonicons = Animatable.createAnimatableComponent(Ionicons)
 const AnimatedIconFontAwesome = Animatable.createAnimatableComponent(FontAwesome)
 
-
-const getAniDrizzle = id => {
-    switch(id) {
-        default:
-            return (
-            <View>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-            </View>
-            );
-            break;
-    }
-}
-const getAniRain = id => {
-    switch(id) {
-        default:
-            return (
-            <View>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-            </View>
-            );
-            break;
-    }
-}
 const getAniSnow = id => {
     switch(id) {
         default:

@@ -290,64 +290,102 @@ module.exports = {
             translateY: 40,
         }
     },
-    flashBig: {
+    thunderBig: {
         0: {
             scale: 1,
-            color: 'rgba(242, 233, 107, 0.4)',
+            color: 'rgba(242, 196, 64, 0.8)',
+            translateX: 2,
+            translateY: 2,
+        },
+        0.1: {
+            scale: 1,
+            color: 'rgba(242, 196, 64, 0.8)',
             translateX: 0,
             translateY: 2,
         },
-        0.5: {
-            scale: 1.3,
-            color: 'rgba(242, 233, 107, 0.8)',
-            translateX: 0,
+        0.2: {
+            scale: 1,
+            color: 'rgba(242, 196, 64, 0.8)',
+            translateX: 4,
             translateY: 2,
+        },
+        0.3: {
+            scale: 1,
+            color: 'rgba(242, 196, 64, 0.8)',
+            translateX: 2,
+            translateY: 2,
+        },
+        0.7: {
+            scale: 1,
+            color: 'rgba(242, 196, 64, 0.8)',
+            translateX: -2,
+            translateY: 20,
+        },
+        0.8: {
+            scale: 1,
+            color: 'rgba(255, 255, 255, 1)',
+            translateX: -2,
+            translateY: 20,
         },
         1: {
             scale: 1,
-            color: 'rgba(242, 233, 107, 0.4)',
-            translateX: 0,
-            translateY: 2,
+            color: 'rgba(255, 255, 255, 0.2)',
+            translateX: -2,
+            translateY: 20,
         }
     },
-    flashSmallL: {
+    thunderSmall: {
+        0: {
+            scale: 0.8,
+            color: 'rgba(255, 255, 255, 1)',
+            translateX: 0,
+            translateY: 16,
+        },
+        1: {
+            scale: 0.8,
+            color: 'rgba(242, 196, 64, 0.8)',
+            translateX: 0,
+            translateY: 16,
+        }
+    },
+    thunderSmallL: {
         0: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.4)',
+            color: 'rgba(242, 196, 64, 0.8)',
             translateX: -50,
-            translateY: 8,
+            translateY: 24,
         },
         0.3: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.8)',
+            color: 'rgba(255, 255, 255, 1)',
             translateX: -50,
-            translateY: 8,
+            translateY: 24,
         },
         1: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.4)',
+            color: 'rgba(242, 196, 64, 0.8)',
             translateX: -50,
-            translateY: 8,
+            translateY: 24,
         }
     },
-    flashSmallR: {
+    thunderSmallR: {
         0: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.4)',
+            color: 'rgba(242, 196, 64, 0.8)',
             translateX: 50,
-            translateY: 8,
+            translateY: 24,
         },
         0.7: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.8)',
+            color: 'rgba(255, 255, 255, 1)',
             translateX: 50,
-            translateY: 8,
+            translateY: 24,
         },
         1: {
             scale: 0.6,
-            color: 'rgba(242, 233, 107, 0.4)',
+            color: 'rgba(242, 196, 64, 0.8)',
             translateX: 50,
-            translateY: 8,
+            translateY: 24,
         }
     },
     raindrop: {

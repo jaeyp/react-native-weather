@@ -24,51 +24,143 @@ export default animationAPIs = {
     200: isNight => { // thunderstorm with light rain
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudGray} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallGray} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop4' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop5' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop6' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </View>);
     },
     201: isNight => { // thunderstorm with rain
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop2' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop3' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </View>);
     },
     202: isNight => { // thunderstorm with heavy rain
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudLeftTop' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudRightBottom' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={40} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallL' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallR' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop2' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop3' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop4' delay={0} duration={600} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop5' delay={200} duration={600} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.drop} name={'minus'} size={24} animation='raindrop6' delay={400} duration={600} easing="linear" iterationCount='infinite' />
         </View>);
     },
     210: isNight => { // light thunderstorm
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudGray} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallGray} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmall' easing="linear" iterationCount='infinite' />
         </View>);
     },
     211: isNight => { // thunderstorm
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallL' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallR' easing="linear" iterationCount='infinite' />
         </View>);
     },
     212: isNight => { // heavy thunderstorm
         return (
         <View style={styles.halfContainer}>
+            <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudLeftTop' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudRightBottom' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderBig' easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallL' easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallR' easing="linear" iterationCount='infinite' />
         </View>);
     },
     221: isNight => { // ragged thunderstorm
         return (
         <View style={styles.halfContainer}>
+            <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudLeftTop' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudRightBottom' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderBig' easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallL' easing="linear" iterationCount='infinite' />
+            <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallR' easing="linear" iterationCount='infinite' />
         </View>);
     },
     230: isNight => { // thunderstorm with light drizzle
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudGray} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallGray} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={24} animation='raindrop4' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={24} animation='raindrop5' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={24} animation='raindrop6' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </View>);
     },
     231: isNight => { // thunderstorm with drizzle
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={28} animation='raindrop4' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={28} animation='raindrop5' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={28} animation='raindrop6' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </View>);
     },
     232: isNight => { // thunderstorm with heavy drizzle
         return (
         <View style={styles.halfContainer}>
+        <AnimatedIconIonicons style={getStyleSunNMoon(isNight)} name={getIconSunNMoon(isNight)} size={100} animation={getAniSunNMoon(isNight)} delay={0} duration={getDurationSunMoon(isNight)} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudLeftTop' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudRightBottom' delay={0} duration={20000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={40} animation='thunderSmall' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallL' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFontAwesome style={styles.flash} name={'flash'} size={50} animation='thunderSmallR' easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={32} animation='raindrop4' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={32} animation='raindrop5' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={32} animation='raindrop6' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </View>);
     },
     300: isNight => { // light intensity drizzle
@@ -502,7 +594,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: screenH / 2 - 250,
         //start: screenW / 2 - 70,
-        color: 'rgba(250, 210, 70, 1)'
+        color: 'rgba(250, 204, 72, 1)',
     },
     moon: {
         position: "absolute",
