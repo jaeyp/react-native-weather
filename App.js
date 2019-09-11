@@ -179,6 +179,8 @@ export default class App extends React.Component {
             raindrop2: Animations.raindrop2,
             raindrop3: Animations.raindrop3,
             raindrop4: Animations.raindrop4,
+            raindrop5: Animations.raindrop5,
+            raindrop6: Animations.raindrop6,
             snowdrop: Animations.snowdrop,
             snowdrop2: Animations.snowdrop2,
             snowdrop3: Animations.snowdrop3,

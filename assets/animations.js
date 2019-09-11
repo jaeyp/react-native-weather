@@ -353,81 +353,139 @@ module.exports = {
     raindrop: {
         0: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: 0,
             translateY: 10,
+            rotate: '110deg',
         },
         0.5: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: -6,
             translateY: 30,
+            rotate: '110deg',
         },
         1: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: -12,
             translateY: 50,
+            rotate: '110deg',
         }
     },
     raindrop2: {
         0: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: 20,
             translateY: 10,
+            rotate: '110deg',
         },
         0.5: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: 14,
             translateY: 30,
+            rotate: '110deg',
         },
         1: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 10,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: 8,
             translateY: 50,
+            rotate: '110deg',
         }
     },
     raindrop3: {
         0: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -30,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: -20,
             translateY: 10,
+            rotate: '110deg',
         },
         0.5: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -30,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: -26,
             translateY: 30,
+            rotate: '110deg',
         },
         1: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: -30,
+            color: 'rgba(64, 164, 224, 0.8)',
+            translateX: -32,
             translateY: 50,
+            rotate: '110deg',
         }
     },
     raindrop4: {
         0: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 30,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 0,
             translateY: 10,
+            rotate: '110deg',
         },
         0.5: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 30,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -6,
             translateY: 30,
+            rotate: '110deg',
         },
         1: {
             scale: 1,
-            color: 'rgba(54, 138, 191, 1)',
-            translateX: 30,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -12,
             translateY: 50,
+            rotate: '110deg',
+        }
+    },
+    raindrop5: {
+        0: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 20,
+            translateY: 10,
+            rotate: '110deg',
+        },
+        0.5: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 14,
+            translateY: 30,
+            rotate: '110deg',
+        },
+        1: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: 8,
+            translateY: 50,
+            rotate: '110deg',
+        }
+    },
+    raindrop6: {
+        0: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -20,
+            translateY: 10,
+            rotate: '110deg',
+        },
+        0.5: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -26,
+            translateY: 30,
+            rotate: '110deg',
+        },
+        1: {
+            scale: 1,
+            color: 'rgba(64, 164, 224, 0.4)',
+            translateX: -32,
+            translateY: 50,
+            rotate: '110deg',
         }
     },
     snowdrop: {
