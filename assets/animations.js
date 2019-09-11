@@ -25,7 +25,7 @@ module.exports = {
             translateY: 0,
         },
         0.5: {
-            scale: 1.02,
+            scale: 1.03,
             color: 'rgba(0, 0, 0, 1)',
             translateX: 0,
             translateY: 0,
