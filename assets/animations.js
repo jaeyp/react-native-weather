@@ -1,6 +1,52 @@
+import * as Animatable from 'react-native-animatable';
+
 // Animations.js
 //module.exports = {
-export default {
+export default registerAnimation = () => {
+    Animatable.initializeRegistryWithDefinitions({
+        glow: Animations.glow,
+        glowPulse: Animations.glowPulse,
+        sun: Animations.sun,
+        sunTop: Animations.sunTop,
+        sunLeft: Animations.sunLeft,
+        sunRight: Animations.sunRight,
+        moon: Animations.moon,
+        moonTop: Animations.moonTop,
+        moonLeft: Animations.moonLeft,
+        moonRight: Animations.moonRight,
+        stars1: Animations.stars1,
+        stars2: Animations.stars2,
+        cloudTop: Animations.cloudTop,
+        cloudLeft: Animations.cloudLeft,
+        cloudRight: Animations.cloudRight,
+        cloudLeftTop: Animations.cloudLeftTop,
+        cloudRightBottom: Animations.cloudRightBottom,
+        thunderBig: Animations.thunderBig,
+        thunderSmall: Animations.thunderSmall,
+        thunderSmallL: Animations.thunderSmallL,
+        thunderSmallR: Animations.thunderSmallR,
+        raindropMid: Animations.raindropMid,
+        raindropLeft: Animations.raindropLeft,
+        raindropRight: Animations.raindropRight,
+        raindropMidSmall: Animations.raindropMidSmall,
+        raindropLeftSmall: Animations.raindropLeftSmall,
+        raindropRightSmall: Animations.raindropRightSmall,
+        raindropMidLeft: Animations.raindropMidLeft,
+        raindropMidRight: Animations.raindropMidRight,
+        snowdropMid: Animations.snowdropMid,
+        snowdropLeft: Animations.snowdropLeft,
+        snowdropRight: Animations.snowdropRight,
+        snowdropMidSmall: Animations.snowdropMidSmall,
+        snowdropLeftSmall: Animations.snowdropLeftSmall,
+        snowdropRightSmall: Animations.snowdropRightSmall,
+        snowdropMidLeft: Animations.snowdropMidLeft,
+        snowdropMidRight: Animations.snowdropMidRight,
+        haze: Animations.haze,
+        tornado: Animations.tornado,
+    });
+}
+
+Animations = {
     glow: {
         0: {
             scale: 1,

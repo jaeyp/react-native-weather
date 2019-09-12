@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
@@ -8,7 +7,7 @@ import axios from 'axios';
 import Loading from './components/Loading';
 import Weather from './components/Weather';
 
-import Animations from './assets/animations';
+import registerAnimation from './assets/animations';
 import { geoTable } from './assets/dataTables';
 
 const API_KEY = 'c787ac53f8cd62c85720a5e465fbdc2e';
@@ -155,54 +154,11 @@ export default class App extends React.Component {
             .catch(e => console.log(e.message));
     }
 	componentWillMount() {
-        Animatable.initializeRegistryWithDefinitions({
-            glow: Animations.glow,
-            glowPulse: Animations.glowPulse,
-            sun: Animations.sun,
-            sunTop: Animations.sunTop,
-            sunLeft: Animations.sunLeft,
-            sunRight: Animations.sunRight,
-            moon: Animations.moon,
-            moonTop: Animations.moonTop,
-            moonLeft: Animations.moonLeft,
-            moonRight: Animations.moonRight,
-            stars1: Animations.stars1,
-            stars2: Animations.stars2,
-            cloudTop: Animations.cloudTop,
-            cloudLeft: Animations.cloudLeft,
-            cloudRight: Animations.cloudRight,
-            cloudLeftTop: Animations.cloudLeftTop,
-            cloudRightBottom: Animations.cloudRightBottom,
-            thunderBig: Animations.thunderBig,
-            thunderSmall: Animations.thunderSmall,
-            thunderSmallL: Animations.thunderSmallL,
-            thunderSmallR: Animations.thunderSmallR,
-            raindropMid: Animations.raindropMid,
-            raindropLeft: Animations.raindropLeft,
-            raindropRight: Animations.raindropRight,
-            raindropMidSmall: Animations.raindropMidSmall,
-            raindropLeftSmall: Animations.raindropLeftSmall,
-            raindropRightSmall: Animations.raindropRightSmall,
-            raindropMidLeft: Animations.raindropMidLeft,
-            raindropMidRight: Animations.raindropMidRight,
-            snowdropMid: Animations.snowdropMid,
-            snowdropLeft: Animations.snowdropLeft,
-            snowdropRight: Animations.snowdropRight,
-            snowdropMidSmall: Animations.snowdropMidSmall,
-            snowdropLeftSmall: Animations.snowdropLeftSmall,
-            snowdropRightSmall: Animations.snowdropRightSmall,
-            snowdropMidLeft: Animations.snowdropMidLeft,
-            snowdropMidRight: Animations.snowdropMidRight,
-            haze: Animations.haze,
-            tornado: Animations.tornado,
-        });
-
+        registerAnimation();
         this.loadData();
     }
 	render() {
         const { isLoading, weather, image, tod } = this.state;
-        console.log('App render() weather=====================================');
-        console.log(`isLoading? ${isLoading}`);
         console.log(weather);
 		return (
             isLoading ? <Loading tod={tod}/> : <Weather data={weather} fnReload={this.loadData}/>  // reload: passing function for reloading weather info.
