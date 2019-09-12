@@ -1,39 +1,62 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, NavigatorIOS } from "react-native";
 import PropTypes from "prop-types";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import animationAPIs from '../assets/animationAPIs';
 import gradientTable from '../assets/dataTables';
 import { screenH } from './Loading';
 
-
-const getAnimaion = d => {
-    return animationAPIs[d.weather.id]((d.dt.tod=="Evening" || d.dt.tod=="Midnight") ? true : false);
+const containers = {
+    Animation: d => {
+        return (
+            <View style={styles.containerAnimation}>
+                {animationAPIs[d.weather.id]((d.dt.tod == "Evening" || d.dt.tod == "Midnight") ? true : false)}
+            </View>
+        );
+    },
+    Temperature: d => {
+        return (
+            <View style={styles.containerTemperature}>
+                <Text style={styles.temperature}>{d.temperature.current}&#176;</Text>
+            </View>
+        );
+    },
+    Button: (d, fn) => {
+        return (
+            <View style={styles.containerButton}>
+                {/* Supports touch screen */}
+                <TouchableOpacity style={styles.buttonLeft} onPress={() => { }}>
+                    <Entypo name={'chevron-left'} size={42} color={'black'} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => fn(d.dt.tod)}>
+                    <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonRight} onPress={() => { }}>
+                    <Entypo name={'chevron-right'} size={42} color={'black'} />
+                </TouchableOpacity>
+            </View>
+        );
+    },
+    Description: d => {
+        const len = d.weather.description.length;
+        let size = len <= 16 ? 32 : (len > 23 ? 22 : 28);
+        return (
+            <View style={{ ...styles.containerDescription, ...styles.containerText }}>
+                <Text style={{ ...styles.description, fontSize: size }}>{d.weather.description}</Text>
+                <Text style={styles.wind}>{d.wind.speed} meter/sec</Text>
+                <Text style={styles.region}>{d.region}, {d.country}</Text>
+            </View>
+        );
+    },
 }
-const getTemperature = d => {
-    return (<Text style={styles.temperature}>{d.temperature.current}&#176;</Text>);
-}
-const getTextContainer = (d, fn) => {
-    let fsize = (d.weather.description.length > 23)?22:28
-    return (
-        <View style={{...styles.halfContainer, ...styles.textContainer}}>
-            {/* Supports touch screen */}
-            <TouchableOpacity style={styles.button} onPress={() => fn(d.dt.tod)}>
-                <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
-            </TouchableOpacity>
-            <Text style={styles.region}>{d.region}, {d.country}</Text>
-            <Text style={{...styles.description, fontSize:fsize}}>{d.weather.description}</Text>
-            <Text style={styles.wind}>{d.wind.speed} meter/sec</Text>
-        </View>
-    );
-}
-const getScreen = (data, fn) => {
+const screen = (data, fn) => {
     return (
         <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
-            {getAnimaion(data)}
-            {getTemperature(data)}
-            {getTextContainer(data, fn)}
+            {containers.Animation(data)}
+            {containers.Temperature(data)}
+            {containers.Button(data, fn)}
+            {containers.Description(data)}
         </LinearGradient>
     );
 }
@@ -45,14 +68,14 @@ export default class Weather extends React.Component {
         // this function should be an arrow function to avoid this binding since arrow function never change its binding.
         this.props.fnReload(tod);
     }
+    /**
+     * If _onPressReload() is not an arrow function but a normal function,
+     * We must bind 'this' to access current this inside of the function. 
+     * Like this,
+     * return getScreen(this.props.data, this._onPressButton.bind(this));
+     */
     render() {
-        return getScreen(this.props.data, this._onPressReload);
-        /**
-         * If _onPressReload() is not an arrow function but a normal function,
-         * We must bind 'this' to access current this inside of the function. 
-         * Like this,
-         * return getScreen(this.props.data, this._onPressButton.bind(this));
-         */
+        return screen(this.props.data, this._onPressReload);
     }
 }
 
@@ -94,16 +117,32 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-    halfContainer: {
-        flex: 2,
+    containerAnimation: {
+        flex: 1,
         justifyContent: "center",
         alignItems: "center"
     },
-    textContainer: {
+    containerTemperature: {
+        flex: 0.9,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    containerButton: {
+        flex: 0.9,
+        flexDirection: 'row',
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    containerDescription: {
+        flex: 1.2,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    containerText: {
         paddingHorizontal: 20
     },
     button: {
-        opacity: 0.2,
+        opacity: 0.3,
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
         padding: 6,
@@ -111,19 +150,22 @@ const styles = StyleSheet.create({
         marginBottom: 32,
         borderRadius: 30,
     },
+    buttonLeft: {
+        opacity: 0.08,
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        marginRight: 100,
+    },
+    buttonRight: {
+        opacity: 0.08,
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        marginLeft: 100,
+    },
     temperature: {
         color: 'white',
         fontSize: 70,
         fontWeight: 'bold',
-        position: "absolute",
-        top: screenH / 2 - 130
-    },
-    region: {
-        color: 'white',
-        fontSize: 24,
-        opacity: 0.5,
-        fontWeight: 'bold',
-        top: screenH / 4,
     },
     time: {
         color: 'white',
@@ -141,7 +183,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         opacity: 0.5,
         fontWeight: 'bold',
-    }
+        marginBottom: 80,
+    },
+    region: {
+        color: 'white',
+        fontSize: 20,
+        opacity: 0.5,
+        fontWeight: 'bold',
+    },
 });
 
 

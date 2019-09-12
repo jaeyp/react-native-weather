@@ -23,459 +23,452 @@ const getDurationSunMoon = isNight => isNight?10000:30000;
 export default animationAPIs = {
     200: isNight => { // thunderstorm with light rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightThunder(50)}
-        {animation.lightRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightThunder(50)}
+            {animation.lightRain(24)}
+            </Fragment>);
     },
     201: isNight => { // thunderstorm with rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.lightThunder(50)}
-        {animation.moderateRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.lightThunder(50)}
+            {animation.moderateRain(24)}
+            </Fragment>);
     },
     202: isNight => { // thunderstorm with heavy rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.moderateThunder(40)}
-        {animation.heavyRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.moderateThunder(40)}
+            {animation.heavyRain(24)}
+            </Fragment>);
     },
     210: isNight => { // light thunderstorm
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightThunder(50)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightThunder(50)}
+            </Fragment>);
     },
     211: isNight => { // thunderstorm
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateThunder(50)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateThunder(50)}
+            </Fragment>);
     },
     212: isNight => { // heavy thunderstorm
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyThunder(50)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyThunder(50)}
+            </Fragment>);
     },
     221: isNight => { // ragged thunderstorm
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyThunder(50)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyThunder(50)}
+            </Fragment>);
     },
     230: isNight => { // thunderstorm with light drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightThunder(50)}
-        {animation.lightDrizzle(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightThunder(50)}
+            {animation.lightDrizzle(24)}
+            </Fragment>);
     },
     231: isNight => { // thunderstorm with drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.lightThunder(50)}
-        {animation.moderateDrizzle(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.lightThunder(50)}
+            {animation.moderateDrizzle(28)}
+            </Fragment>);
     },
     232: isNight => { // thunderstorm with heavy drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.moderateThunder(40)}
-        {animation.heavyDrizzle(32)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.moderateThunder(40)}
+            {animation.heavyDrizzle(32)}
+            </Fragment>);
     },
     300: isNight => { // light intensity drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightDrizzle(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightDrizzle(24)}
+            </Fragment>);
     },
     301: isNight => { // drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateDrizzle(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateDrizzle(28)}
+            </Fragment>);
     },
     302: isNight => { // heavy intensity drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyDrizzle(32)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyDrizzle(32)}
+            </Fragment>);
     },
     310: isNight => { // light intensity drizzle rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightDrizzle(24)}
-        {animation.lightRain(20)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightDrizzle(24)}
+            {animation.lightRain(20)}
+            </Fragment>);
     },
     311: isNight => { // drizzle rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.lightDrizzle(28)}
-        {animation.lightRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.lightDrizzle(28)}
+            {animation.lightRain(24)}
+            </Fragment>);
     },
     312: isNight => { // heavy intensity drizzle rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.lightDrizzle(32)}
-        {animation.lightRain(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.lightDrizzle(32)}
+            {animation.lightRain(28)}
+            </Fragment>);
     },
     313: isNight => { // shower rain and drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.moderateDrizzle(28)}
-        {animation.lightRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.moderateDrizzle(28)}
+            {animation.lightRain(24)}
+            </Fragment>);
     },
     314: isNight => { // heavy shower rain and drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateDrizzle(32)}
-        {animation.lightRain(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateDrizzle(32)}
+            {animation.lightRain(28)}
+            </Fragment>);
     },
     321: isNight => { // shower drizzle
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.showerDrizzle(32)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.showerDrizzle(32)}
+            </Fragment>);
     },
     500: isNight => { // light rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightRain(24)}
+            </Fragment>);
     },
     501: isNight => { // moderate rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateRain(24)}
+            </Fragment>);
     },
     502: isNight => { // heavy intensity rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.heavyRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.heavyRain(24)}
+            </Fragment>);
     },
     503: isNight => { // very heavy rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyRain(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyRain(28)}
+            </Fragment>);
     },
     504: isNight => { // extreme rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyRain(32)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyRain(32)}
+            </Fragment>);
     },
     511: isNight => { // freezing rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateRain(24)}
-        {animation.moderateSnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateRain(24)}
+            {animation.moderateSnow(18)}
+            </Fragment>);
     },
     520: isNight => { // light intensity shower rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.heavyRain(20)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.heavyRain(20)}
+            </Fragment>);
     },
     521: isNight => { // shower rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.heavyRain(24)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.heavyRain(24)}
+            </Fragment>);
     },
     522: isNight => { // heavy intensity shower rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyRain(28)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyRain(28)}
+            </Fragment>);
     },
     531: isNight => { // ragged shower rain
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyRain(32)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyRain(32)}
+            </Fragment>);
     },
     600: isNight => { // light snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightSnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightSnow(18)}
+            </Fragment>);
     },
     601: isNight => { // Snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateSnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateSnow(18)}
+            </Fragment>);
     },
     602: isNight => { // Heavy snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavySnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavySnow(18)}
+            </Fragment>);
     },
     611: isNight => { // Sleet
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightSnow(12)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightSnow(12)}
+            </Fragment>);
     },
     612: isNight => { // Light shower sleet
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateSnow(12)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateSnow(12)}
+            </Fragment>);
     },
     613: isNight => { // Shower sleet
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavySnow(12)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavySnow(12)}
+            </Fragment>);
     },
     615: isNight => { // Light rain and snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightRain(24)}
-        {animation.lightSnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightRain(24)}
+            {animation.lightSnow(18)}
+            </Fragment>);
     },
     616: isNight => { // Rain and snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.moderateRain(24)}
-        {animation.moderateSnow(18)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.moderateRain(24)}
+            {animation.moderateSnow(18)}
+            </Fragment>);
     },
     620: isNight => { // Light shower snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsScattered}
-        {animation.lightShowerSnow(14)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsScattered}
+            {animation.lightShowerSnow(14)}
+            </Fragment>);
     },
     621: isNight => { // Shower snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.moderateShowerSnow(14)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.moderateShowerSnow(14)}
+            </Fragment>);
     },
     622: isNight => { // Heavy shower snow
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyShowerSnow(14)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyShowerSnow(14)}
+            </Fragment>);
     },
     701: isNight => { // mist
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.mist(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.mist(60)}
+            </Fragment>);
     },
     711: isNight => { // Smoke
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.haze(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.haze(60)}
+            </Fragment>);
     },
     721: isNight => { // Haze
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.haze(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.haze(60)}
+            </Fragment>);
     },
     731: isNight => { // sand/ dust whirls
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.dust(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.dust(60)}
+            </Fragment>);
     },
     741: isNight => { // fog
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.mist(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.mist(60)}
+            </Fragment>);
     },
     751: isNight => { // sand
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.dust(60)}
-        </View>);
+                <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.dust(60)}
+            </Fragment>);
     },
     761: isNight => { // dust
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.dust(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.dust(60)}
+            </Fragment>);
     },
     762: isNight => { // volcanic ash
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        {animation.haze(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            {animation.haze(60)}
+            </Fragment>);
     },
     771: isNight => { // squalls
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsOvercast}
-        {animation.heavyShowerSnow(14)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsOvercast}
+            {animation.heavyShowerSnow(14)}
+            </Fragment>);
     },
     781: isNight => { // tornado
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.rainCloudsBroken}
-        {animation.tornado(60)}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.rainCloudsBroken}
+            {animation.tornado(60)}
+            </Fragment>);
     },
     800: isNight => { // clear
-        if(isNight) {
-            return (
-            <View style={styles.halfContainer}>
-                {animation.clearSunNMoon(isNight)}
-                {animation.stars}
-            </View>);
-        } else {
-            return (
-            <View style={styles.halfContainer}>
-                {animation.clearSunNMoon(isNight)}
-            </View>);
-        }
+        return(
+            <Fragment>
+            {animation.clearSunNMoon(isNight)}
+            {isNight?animation.stars:null}
+            </Fragment>);
     },
     801: isNight => { // few clouds 11-25%
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsFew}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsFew}
+            </Fragment>);
     },
     802: isNight => { // scattered clouds 25-50%
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsScattered}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsScattered}
+            </Fragment>);
     },
     803: isNight => { // broken clouds 51- 84%
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsBroken}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsBroken}
+            </Fragment>);
     },
     804: isNight => { // overcast clouds 85-100%
         return (
-        <View style={styles.halfContainer}>
-        {animation.sunNMoon(isNight)}
-        {animation.cloudsOvercast}
-        </View>);
+            <Fragment>
+            {animation.sunNMoon(isNight)}
+            {animation.cloudsOvercast}
+            </Fragment>);
     },
 }
 
