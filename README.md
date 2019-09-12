@@ -44,7 +44,13 @@ Learning React Native by Building a Simple Weather App
 ```bash
 ~$ npm install react-navigation
 ~$ npm install react-navigation-stack
-~$ yarn add react-native-gesture-handler
+```
+
+* Gesture
+```bash
+~$ yarn add react-native-gesture-handler@~1.3.0 # v1.3.0 required
+or
+~$ expo install react-native-gesture-handler
 ```
 
 ## Setup

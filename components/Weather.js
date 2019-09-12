@@ -1,11 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, NavigatorIOS } from "react-native";
+import { createAppContainer} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import animationAPIs from '../assets/animationAPIs';
 import gradientTable from '../assets/dataTables';
 import { screenH } from './Loading';
+
 
 const containers = {
     Animation: d => {
@@ -63,6 +66,7 @@ const screen = (data, fn) => {
 
 //export default function Weather({data}) {
 export default class Weather extends React.Component {
+//class HomeScreen extends React.Component {
     _onPressReload = (tod) => {
         // reload: passing function for reloading weather info.
         // this function should be an arrow function to avoid this binding since arrow function never change its binding.
@@ -75,9 +79,24 @@ export default class Weather extends React.Component {
      * return getScreen(this.props.data, this._onPressButton.bind(this));
      */
     render() {
+        console.log('HomeScreen render() wdata=====================================================')
+        console.log(this.props.data);
         return screen(this.props.data, this._onPressReload);
     }
 }
+
+/*
+const MainNavigator = createStackNavigator({
+    Home: {
+        screen: (wdata, fnReload) => <HomeScreen wdata={wdata} fnReload={fnReload}/>
+    },
+    //Profile: {screen: HomeScreen},
+});
+
+const Weather = createAppContainer(MainNavigator);
+
+export default Weather;
+*/
 
 Weather.propTypes = {
     data: PropTypes.shape({
@@ -110,6 +129,7 @@ Weather.propTypes = {
         })
     }).isRequired
 }
+
 
 const styles = StyleSheet.create({
     container: {
