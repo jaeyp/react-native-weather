@@ -1,80 +1,39 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
-import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Animatable from 'react-native-animatable';
 import animationAPIs from '../assets/animationAPIs';
 import gradientTable from '../assets/dataTables';
-import { screenH, screenW } from './Loading';
+import { screenH } from './Loading';
 
-const AnimatedIconIonicons = Animatable.createAnimatableComponent(Ionicons)
-const AnimatedIconFontAwesome = Animatable.createAnimatableComponent(FontAwesome)
-
-const getAniSnow = id => {
-    switch(id) {
-        default:
-            return (
-            <View>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop' delay={0} duration={1000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop2' delay={200} duration={1000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={20} animation='snowdrop3' delay={400} duration={1000} easing="linear" iterationCount='infinite' />
-            </View>
-            );
-            break;
-    }
-}
-const getAniAtmosphere = id => {
-    switch(id) {
-        default:
-            return (
-            <View>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-            </View>
-            );
-            break;
-    }
-}
-const getAniError = id => {
-    switch(id) {
-        default:
-            return (
-            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
-                <AnimatedIconIonicons style={styles.sunny} name={'ios-sunny'} size={100} animation='rotate' delay={0} duration={30000} easing="linear" iterationCount='infinite' />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={120} />
-                <AnimatedIconIonicons style={styles.cloud} name={'ios-cloud'} size={50} animation='flow' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
-                <Text style={styles.temperature}>{data.temperature.current}&#176;</Text>
-            </LinearGradient>
-            );
-    }
-}
 
 const getAnimaion = d => {
     return animationAPIs[d.weather.id]((d.dt.tod=="Evening" || d.dt.tod=="Midnight") ? true : false);
 }
-const getTemperature = temp => {
-    return (<Text style={styles.temperature}>{temp}&#176;</Text>);
+const getTemperature = d => {
+    return (<Text style={styles.temperature}>{d.temperature.current}&#176;</Text>);
+}
+const getTextContainer = (d, fn) => {
+    let fsize = (d.weather.description.length > 23)?22:28
+    return (
+        <View style={{...styles.halfContainer, ...styles.textContainer}}>
+            {/* Supports touch screen */}
+            <TouchableOpacity style={styles.button} onPress={() => fn(d.dt.tod)}>
+                <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
+            </TouchableOpacity>
+            <Text style={styles.region}>{d.region}, {d.country}</Text>
+            <Text style={{...styles.description, fontSize:fsize}}>{d.weather.description}</Text>
+            <Text style={styles.wind}>{d.wind.speed} meter/sec</Text>
+        </View>
+    );
 }
 const getScreen = (data, fn) => {
     return (
         <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
             {getAnimaion(data)}
-            {getTemperature(data.temperature.current)}
-            
-            <View style={styles.halfContainer}>
-                {/* Supports touch screen */}
-                <TouchableOpacity style={styles.button} onPress={() => fn(data.dt.tod)}>
-                    <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
-                </TouchableOpacity>
-                <Text style={styles.region}>{data.region}, {data.country}</Text>
-                <Text style={styles.description}>{data.weather.description}</Text>
-                <Text style={styles.wind}>{data.wind.speed} meter/sec</Text>
-            </View>
+            {getTemperature(data)}
+            {getTextContainer(data, fn)}
         </LinearGradient>
     );
 }
@@ -139,6 +98,9 @@ const styles = StyleSheet.create({
         flex: 2,
         justifyContent: "center",
         alignItems: "center"
+    },
+    textContainer: {
+        paddingHorizontal: 20
     },
     button: {
         opacity: 0.2,

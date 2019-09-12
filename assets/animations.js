@@ -1,5 +1,6 @@
 // Animations.js
-module.exports = {
+//module.exports = {
+export default {
     glow: {
         0: {
             scale: 1,

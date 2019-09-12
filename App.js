@@ -1,13 +1,14 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import Loading from './components/Loading';
-import Weather from './components/Weather';
+import * as Animatable from 'react-native-animatable';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 
+import Loading from './components/Loading';
+import Weather from './components/Weather';
+
 import Animations from './assets/animations';
-import * as Animatable from 'react-native-animatable';
 import { geoTable } from './assets/dataTables';
 
 const API_KEY = 'c787ac53f8cd62c85720a5e465fbdc2e';

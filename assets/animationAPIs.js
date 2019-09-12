@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
-import { StyleSheet, Text, View, Dimensionst } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Ionicons, FontAwesome, Feather, Entypo } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import { screenH, screenW } from '../components/Loading';
+import { screenH } from '../components/Loading';
 
 const AnimatedIconIonicons = Animatable.createAnimatableComponent(Ionicons);
 const AnimatedIconFontAwesome = Animatable.createAnimatableComponent(FontAwesome);
 const AnimatedIconFeather = Animatable.createAnimatableComponent(Feather);
-const AnimatedIconEntypo = Animatable.createAnimatableComponent(Entypo);
 
 const getStyleSunNMoon = isNight => isNight?styles.moon:styles.sunny;
 const getIconSunNMoon = isNight => isNight?'ios-moon':'ios-sunny';
