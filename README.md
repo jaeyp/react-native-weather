@@ -40,6 +40,12 @@ Learning React Native by Building a Simple Weather App
 ~$ expo install expo-linear-gradient
 ```
 
+* Navigation
+```bash
+~$ npm install --save react-navigation
+~$ yarn add react-native-gesture-handler
+```
+
 ## Setup
 * Clone project
 ```bash
@@ -49,6 +55,17 @@ Learning React Native by Building a Simple Weather App
 * Install packages
 ```bash
 ~$ yarn install
+```
+
+## Build
+* android
+```bash
+~$ expo build:android
+```
+
+* ios
+```bash
+~$ expo build:ios
 ```
 
 ## Run the app
