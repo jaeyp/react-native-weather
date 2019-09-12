@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { StyleSheet, Text, View, Dimensionst } from 'react-native';
-import { Ionicons, FontAwesome, Feather } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Feather, Entypo } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { screenH, screenW } from '../components/Loading';
 
 const AnimatedIconIonicons = Animatable.createAnimatableComponent(Ionicons);
 const AnimatedIconFontAwesome = Animatable.createAnimatableComponent(FontAwesome);
 const AnimatedIconFeather = Animatable.createAnimatableComponent(Feather);
+const AnimatedIconEntypo = Animatable.createAnimatableComponent(Entypo);
 
 const getStyleSunNMoon = isNight => isNight?styles.moon:styles.sunny;
 const getIconSunNMoon = isNight => isNight?'ios-moon':'ios-sunny';
@@ -227,6 +228,10 @@ export default animationAPIs = {
     511: isNight => { // freezing rain
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsBroken}
+        {animation.moderateRain(24)}
+        {animation.moderateSnow(18)}
         </View>);
     },
     520: isNight => { // light intensity shower rain
@@ -264,106 +269,171 @@ export default animationAPIs = {
     600: isNight => { // light snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsScattered}
+        {animation.lightSnow(18)}
         </View>);
     },
     601: isNight => { // Snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsBroken}
+        {animation.moderateSnow(18)}
         </View>);
     },
     602: isNight => { // Heavy snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsOvercast}
+        {animation.heavySnow(18)}
         </View>);
     },
     611: isNight => { // Sleet
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsScattered}
+        {animation.lightSnow(12)}
         </View>);
     },
     612: isNight => { // Light shower sleet
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsBroken}
+        {animation.moderateSnow(12)}
         </View>);
     },
     613: isNight => { // Shower sleet
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsOvercast}
+        {animation.heavySnow(12)}
         </View>);
     },
     615: isNight => { // Light rain and snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsScattered}
+        {animation.lightRain(24)}
+        {animation.lightSnow(18)}
         </View>);
     },
     616: isNight => { // Rain and snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsScattered}
+        {animation.moderateRain(24)}
+        {animation.moderateSnow(18)}
         </View>);
     },
     620: isNight => { // Light shower snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsScattered}
+        {animation.lightShowerSnow(14)}
         </View>);
     },
     621: isNight => { // Shower snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsBroken}
+        {animation.moderateShowerSnow(14)}
         </View>);
     },
     622: isNight => { // Heavy shower snow
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsOvercast}
+        {animation.heavyShowerSnow(14)}
         </View>);
     },
     701: isNight => { // mist
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.mist(60)}
         </View>);
     },
     711: isNight => { // Smoke
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.haze(60)}
         </View>);
     },
     721: isNight => { // Haze
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.haze(60)}
         </View>);
     },
     731: isNight => { // sand/ dust whirls
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.dust(60)}
         </View>);
     },
     741: isNight => { // fog
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.mist(60)}
         </View>);
     },
     751: isNight => { // sand
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.dust(60)}
         </View>);
     },
     761: isNight => { // dust
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.dust(60)}
         </View>);
     },
     762: isNight => { // volcanic ash
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.cloudsOvercast}
+        {animation.haze(60)}
         </View>);
     },
     771: isNight => { // squalls
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsOvercast}
+        {animation.heavyShowerSnow(14)}
         </View>);
     },
     781: isNight => { // tornado
         return (
         <View style={styles.halfContainer}>
+        {animation.sunNMoon(isNight)}
+        {animation.rainCloudsBroken}
+        {animation.tornado(60)}
         </View>);
     },
     800: isNight => { // clear
@@ -471,7 +541,27 @@ const styles = StyleSheet.create({
     drop: {
         position: "absolute",
         top: screenH / 2 - 180
-    }
+    },
+    haze: {
+        position: "absolute",
+        top: screenH / 2 - 180,
+        color: 'rgba(64, 64, 64, 0.5)'
+    },
+    mist: {
+        position: "absolute",
+        top: screenH / 2 - 180,
+        color: 'rgba(128, 128, 128, 0.5)'
+    },
+    dust: {
+        position: "absolute",
+        top: screenH / 2 - 180,
+        color: 'rgba(191, 131, 78, 0.5)'
+    },
+    tornado: {
+        position: "absolute",
+        top: screenH / 2 - 180,
+        color: 'rgba(32, 32, 32, 0.5)'
+    },
 });
 
 
@@ -543,7 +633,7 @@ const animation = {
     ),
     rainCloudsOvercast: (
 		<Fragment>
-        <AnimatedIconIonicons style={styles.clocloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
+        <AnimatedIconIonicons style={styles.cloudDark} name={'ios-cloud'} size={120} animation="pulse" duration={4000} easing="ease-out" iterationCount="infinite" />
         <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={50} animation='cloudTop' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
         <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudLeft' delay={0} duration={12000} easing="linear" iterationCount='infinite' />
         <AnimatedIconIonicons style={styles.cloudSmallDark} name={'ios-cloud'} size={60} animation='cloudRight' delay={0} duration={15000} easing="linear" iterationCount='infinite' />
@@ -627,4 +717,73 @@ const animation = {
         <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRightSmall' delay={400} duration={600} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
+    lightSnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-4} animation='snowdropMid' delay={0} duration={1800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-4} animation='snowdropLeftSmall' delay={600} duration={1800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-4} animation='snowdropRightSmall' delay={1200} duration={1800} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    moderateSnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMid' delay={0} duration={1800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-4} animation='snowdropLeft' delay={600} duration={1800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-4} animation='snowdropRight' delay={1200} duration={1800} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    heavySnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMid' delay={0} duration={2000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropLeft' delay={700} duration={2000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropRight' delay={1400} duration={2000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMidSmall' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropLeftSmall' delay={800} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropRightSmall' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    lightShowerSnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-2} animation='snowdropMidSmall' delay={0} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-2} animation='snowdropLeftSmall' delay={200} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size-2} animation='snowdropRightSmall' delay={400} duration={800} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    moderateShowerSnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMidSmall' delay={0} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropLeftSmall' delay={200} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropRightSmall' delay={400} duration={800} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    heavyShowerSnow: size => (
+        <Fragment>
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMidSmall' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropLeftSmall' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropRightSmall' delay={800} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropMidSmall' delay={0} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropLeftSmall' delay={400} duration={800} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.drop} name={'md-snow'} size={size} animation='snowdropRightSmall' delay={200} duration={800} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    haze: size => (
+        <Fragment>
+        <AnimatedIconFeather style={styles.haze} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    mist: size => (
+        <Fragment>
+        <AnimatedIconFeather style={styles.mist} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    dust: size => (
+        <Fragment>
+        <AnimatedIconFeather style={styles.dust} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    tornado: size => (
+        <Fragment>
+        <AnimatedIconFeather style={styles.tornado} name={'chrome'} size={size} animation='tornado' delay={0} duration={1000} easing="linear" iterationCount='infinite' />
+        </Fragment>
+    ),
+    
 }

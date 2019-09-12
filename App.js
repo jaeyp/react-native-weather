@@ -184,9 +184,16 @@ export default class App extends React.Component {
             raindropRightSmall: Animations.raindropRightSmall,
             raindropMidLeft: Animations.raindropMidLeft,
             raindropMidRight: Animations.raindropMidRight,
-            snowdrop: Animations.snowdrop,
-            snowdrop2: Animations.snowdrop2,
-            snowdrop3: Animations.snowdrop3,
+            snowdropMid: Animations.snowdropMid,
+            snowdropLeft: Animations.snowdropLeft,
+            snowdropRight: Animations.snowdropRight,
+            snowdropMidSmall: Animations.snowdropMidSmall,
+            snowdropLeftSmall: Animations.snowdropLeftSmall,
+            snowdropRightSmall: Animations.snowdropRightSmall,
+            snowdropMidLeft: Animations.snowdropMidLeft,
+            snowdropMidRight: Animations.snowdropMidRight,
+            haze: Animations.haze,
+            tornado: Animations.tornado,
         });
 
         this.loadData();

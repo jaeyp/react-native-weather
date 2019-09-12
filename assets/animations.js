@@ -572,64 +572,265 @@ module.exports = {
             rotate: '110deg',
         }
     },
-    snowdrop: {
+    snowdropMid: {
         0: {
             scale: 1,
-            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: 0,
             translateY: 10,
+        },
+        0.25: {
+            scale: 1,
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: -4,
+            translateY: 20,
         },
         0.5: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: 0,
             translateY: 30,
+        },
+        0.75: {
+            scale: 1,
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 4,
+            translateY: 40,
         },
         1: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: 0,
             translateY: 50,
         }
     },
-    snowdrop2: {
+    snowdropLeft: {
         0: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: -25,
             translateY: 10,
+        },
+        0.25: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: -21,
+            translateY: 20,
         },
         0.5: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: -25,
             translateY: 30,
+        },
+        0.75: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: -29,
+            translateY: 40,
         },
         1: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
             translateX: -25,
             translateY: 50,
         }
     },
-    snowdrop3: {
+    snowdropRight: {
         0: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 25,
+            translateY: 10,
+        },
+        0.25: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 21,
+            translateY: 20,
+        },
+        0.5: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 25,
+            translateY: 30,
+        },
+        0.75: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 29,
+            translateY: 40,
+        },
+        1: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.9)',
+            translateX: 25,
+            translateY: 50,
+        }
+    },
+    snowdropMidSmall: {
+        0: {
+            scale: 1,
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 0,
+            translateY: 10,
+        },
+        0.5: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 0,
+            translateY: 30,
+        },
+        1: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 0,
+            translateY: 50,
+        }
+    },
+    snowdropLeftSmall: {
+        0: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -25,
+            translateY: 10,
+        },
+        0.5: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -25,
+            translateY: 30,
+        },
+        1: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -25,
+            translateY: 50,
+        }
+    },
+    snowdropRightSmall: {
+        0: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
             translateX: 25,
             translateY: 10,
         },
         0.5: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
             translateX: 25,
             translateY: 30,
         },
         1: {
             scale: 1,
             color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
             translateX: 25,
             translateY: 50,
         }
+    },
+    snowdropMidLeft: {
+        0: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -12,
+            translateY: 10,
+        },
+        0.5: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -12,
+            translateY: 30,
+        },
+        1: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: -12,
+            translateY: 50,
+        }
+    },
+    snowdropMidRight: {
+        0: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 12,
+            translateY: 10,
+        },
+        0.5: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 12,
+            translateY: 30,
+        },
+        1: {
+            scale: 1,
+            color: 'white',
+            color: 'rgba(255, 255, 255, 0.5)',
+            translateX: 12,
+            translateY: 50,
+        }
+    },
+    haze: {
+        0: {
+            scale: 1,
+            translateX: 0,
+            translateY: 10,
+        },
+        0.25: {
+            scale: 1,
+            translateX: -4,
+            translateY: 10,
+        },
+        0.5: {
+            scale: 1,
+            translateX: 0,
+            translateY: 10,
+        },
+        0.75: {
+            scale: 1,
+            translateX: 4,
+            translateY: 10,
+        },
+        1: {
+            scale: 1,
+            translateX: 0,
+            translateY: 10,
+        }
+    },
+    tornado: {
+        from: {
+            translateX: 0,
+            translateY: 10,
+            rotate: '180deg'
+        },
+        to: {
+            translateX: 0,
+            translateY: 10,
+            rotate: '-180deg'
+        },
     }
 }
