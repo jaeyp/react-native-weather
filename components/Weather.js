@@ -1,12 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, NavigatorIOS } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import animationAPIs from '../assets/animationAPIs';
 import gradientTable from '../assets/dataTables';
-import { screenH } from './Loading';
-
 
 const containers = {
     Animation: d => {
@@ -51,20 +49,9 @@ const containers = {
         );
     },
 }
-const screen = (data, fn) => {
-    return (
-        <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
-            {containers.Animation(data)}
-            {containers.Temperature(data)}
-            {containers.Button(data, fn)}
-            {containers.Description(data)}
-        </LinearGradient>
-    );
-}
 
 //export default function Weather({data}) {
 export default class Weather extends React.Component {
-//class HomeScreen extends React.Component {
     _onPressReload = (tod) => {
         // reload: passing function for reloading weather info.
         // this function should be an arrow function to avoid this binding since arrow function never change its binding.
@@ -77,7 +64,16 @@ export default class Weather extends React.Component {
      * return getScreen(this.props.data, this._onPressButton.bind(this));
      */
     render() {
-        return screen(this.props.data, this._onPressReload);
+        const data = this.props.data;
+        const fn = this._onPressReload;
+        return (
+            <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
+                {containers.Animation(data)}
+                {containers.Temperature(data)}
+                {containers.Button(data, fn)}
+                {containers.Description(data)}
+            </LinearGradient>
+        );
     }
 }
 
