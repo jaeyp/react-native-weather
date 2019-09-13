@@ -161,7 +161,7 @@ export default class App extends React.Component {
         const { isLoading, weather, image, tod } = this.state;
         console.log(weather);
 		return (
-            isLoading ? <Loading tod={tod}/> : <Weather data={weather} fnReload={this.loadData}/>  // reload: passing function for reloading weather info.
+            isLoading ? <Loading tod={tod}/> : <Weather data={weather} fnReload={this.loadData} fnPrev={(()=>{})()} fnNext={(()=>{})()}/>  // reload: passing function for reloading weather info.
 		);
     }
     componentWillUnmount() {
