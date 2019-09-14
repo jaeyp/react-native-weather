@@ -40,13 +40,13 @@ Learning React Native by Building a Simple Weather App
 ~$ expo install expo-linear-gradient
 ```
 
-* Navigation
+* ~~Navigation~~
 ```bash
 ~$ npm install react-navigation
 ~$ npm install react-navigation-stack
 ```
 
-* Gesture
+* ~~Gesture~~
 ```bash
 ~$ yarn add react-native-gesture-handler@~1.3.0 # v1.3.0 required
 or
