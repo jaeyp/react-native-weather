@@ -1,10 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from "react-native";
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import animationAPIs from '../assets/animationAPIs';
-import gradientTable from '../assets/dataTables';
+import gradientTable, { geoTable } from '../assets/dataTables';
+
+import * as Animatable from 'react-native-animatable';
+
+const AnimatedIconMCI = Animatable.createAnimatableComponent(MaterialCommunityIcons);
 
 const containers = {
     Animation: d => {
@@ -21,17 +25,33 @@ const containers = {
             </View>
         );
     },
-    Button: (d, fn) => {
+    ButtonReload: (fn) => {
         return (
             <View style={styles.containerButton}>
                 {/* Supports touch screen */}
-                <TouchableOpacity style={styles.buttonLeft} onPress={() => { }}>
+                <TouchableOpacity style={styles.buttonLeft} onPress={() => {}}>
                     <Entypo name={'chevron-left'} size={42} color={'black'} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => fn(d.dt.tod)}>
+                <TouchableHighlight style={styles.buttonReload} onPress={() => fn.reload(geoTable)}>
+                    <AnimatedIconMCI name={'reload'} size={42} color={'black'} animation='rotate' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
+                </TouchableHighlight>
+                <TouchableOpacity style={styles.buttonRight} onPress={() => {}}>
+                    <Entypo name={'chevron-right'} size={42} color={'black'} />
+                </TouchableOpacity>
+            </View>
+        );
+    },
+    Button: (fn) => {
+        return (
+            <View style={styles.containerButton}>
+                {/* Supports touch screen */}
+                <TouchableOpacity style={styles.buttonLeft} onPress={() => fn.prev()}>
+                    <Entypo name={'chevron-left'} size={42} color={'black'} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => fn.reload(geoTable)}>
                     <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonRight} onPress={() => { }}>
+                <TouchableOpacity style={styles.buttonRight} onPress={() => fn.next()}>
                     <Entypo name={'chevron-right'} size={42} color={'black'} />
                 </TouchableOpacity>
             </View>
@@ -52,10 +72,28 @@ const containers = {
 
 //export default function Weather({data}) {
 export default class Weather extends React.Component {
-    _onPressReload = (tod) => {
+    state = {
+        isLoading: false,
+    }
+    
+    _sleep = amount => {
+        return new Promise((resolve, reject) => setTimeout(resolve, amount));
+    }
+    _onPressReload = async (geoList) => {
         // reload: passing function for reloading weather info.
         // this function should be an arrow function to avoid this binding since arrow function never change its binding.
-        this.props.fnReload(tod);
+        this.setState({isLoading: true});
+        //await this._sleep(0);
+        this.props.fnReload(geoList)
+            .then(()=>this.setState({isLoading: false}));
+    }
+    _onPressPrev = () => {
+        const prev = (this.props.index + this.props.data.length - 1) % this.props.data.length;
+        this.props.fnPrev(prev);
+    }
+    _onPressNext = () => {
+        const next = (this.props.index + 1) % this.props.data.length;
+        this.props.fnNext(next);
     }
     /**
      * If _onPressReload() is not an arrow function but a normal function,
@@ -64,21 +102,24 @@ export default class Weather extends React.Component {
      * return getScreen(this.props.data, this._onPressButton.bind(this));
      */
     render() {
-        const data = this.props.data;
-        const fn = this._onPressReload;
+        const { isLoading } = this.state;
+        const { index, data } = this.props;
+        const fn = {reload:this._onPressReload, prev: this._onPressPrev, next: this._onPressNext};
+        //console.log(data[index]);
         return (
-            <LinearGradient colors={gradientTable[data.dt.tod].gradient} style={styles.container}>
-                {containers.Animation(data)}
-                {containers.Temperature(data)}
-                {containers.Button(data, fn)}
-                {containers.Description(data)}
+            <LinearGradient colors={gradientTable[data[index].dt.tod].gradient} style={styles.container}>
+                {containers.Animation(data[index])}
+                {containers.Temperature(data[index])}
+                {isLoading?containers.ButtonReload(fn):containers.Button(fn)}
+                {containers.Description(data[index])}
             </LinearGradient>
         );
     }
 }
 
 Weather.propTypes = {
-    data: PropTypes.shape({
+    /* React PropTypes - in case of an array of objects with shape() */
+    data: PropTypes.arrayOf(PropTypes.shape({
         country: PropTypes.string.isRequired,
         region: PropTypes.string.isRequired,
         altitude: PropTypes.number.isRequired,
@@ -106,7 +147,7 @@ Weather.propTypes = {
             sunset: PropTypes.instanceOf(Date).isRequired,
             tod: PropTypes.string.isRequired,
         })
-    }).isRequired
+    })).isRequired
 }
 
 
@@ -142,6 +183,15 @@ const styles = StyleSheet.create({
     },
     button: {
         opacity: 0.3,
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        padding: 6,
+        marginTop: 32,
+        marginBottom: 32,
+        borderRadius: 30,
+    },
+    buttonReload: {
+        opacity: 0.7,
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
         padding: 6,

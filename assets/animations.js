@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 //module.exports = {
 export default registerAnimation = () => {
     Animatable.initializeRegistryWithDefinitions({
+        rotate: Animations.rotate,
         glow: Animations.glow,
         glowPulse: Animations.glowPulse,
         sun: Animations.sun,
@@ -47,6 +48,26 @@ export default registerAnimation = () => {
 }
 
 Animations = {
+    rotate: {
+        0: {
+            translateX: 0,
+            translateY: 0,
+            color: 'rgba(0, 0, 0, 1)',
+            rotate: '0deg'
+        },
+        0.5: {
+            translateX: 0,
+            translateY: 0,
+            color: 'rgba(64, 64, 64, 1)',
+            rotate: '180deg'
+        },
+        1: {
+            translateX: 0,
+            translateY: 0,
+            color: 'rgba(0, 0, 0, 1)',
+            rotate: '360deg'
+        },
+    },
     glow: {
         0: {
             scale: 1,

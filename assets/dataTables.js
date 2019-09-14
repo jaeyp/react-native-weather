@@ -13,6 +13,11 @@ export default gradientTable = {
 
 /* Testing Random City */
 export const geoTable = [
+    { city: 'London', lat: 51.5074, lon: 0.1278 },
+    { city: 'New Delhi', lat: 28.6139, lon: 77.2090 },
+    { city: 'Seoul', lat: 37.5665, lon: 126.9780 },
+    { city: 'Vancouver', lat: 49.2827, lon: -123.1207 },
+    /*
     { city: 'Honolulu ', lat: 21.3069, lon: -157.8583 },
     { city: 'Anchorage ', lat: 61.2181, lon: -149.9003 },
     { city: 'Vancouver', lat: 49.2827, lon: -123.1207 },
@@ -30,4 +35,5 @@ export const geoTable = [
     { city: 'Seoul', lat: 37.5665, lon: 126.9780 },
     { city: 'Sydney', lat: -33.8688, lon: 151.2093 },
     { city: 'Auckland', lat: -36.8485, lon: 174.7633 },
+    */
 ]
