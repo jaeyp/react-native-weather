@@ -97,3 +97,7 @@ or
 ```bash
 ~$ yarn start
 ```
+
+## APIs
+* [Google Maps APIs](https://cloud.google.com/maps-platform/)  
+* [Open Weather APIs](https://openweathermap.org/)  
