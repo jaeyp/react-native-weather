@@ -156,11 +156,13 @@ class DisplayLatLng extends React.Component {
           initialRegion={this.state.region}
           onRegionChange={region => this.onRegionChange(region)}
         />
+        {/*
         <View style={[styles.square, styles.latlng]}>
           <Text style={styles.centeredText}>
             {`${this.state.region.latitude.toPrecision(7)}, ${this.state.region.longitude.toPrecision(7)}`}
           </Text>
         </View>
+        */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => this.zoomIn()}
