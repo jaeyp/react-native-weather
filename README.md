@@ -53,6 +53,16 @@ or
 ~$ expo install react-native-gesture-handler
 ```
 
+* MapView
+```bash
+~$ expo install react-native-maps
+```
+
+* ~~Google map geocoding~~
+```bash
+~$ yarn add react-native-geocoding
+```
+
 ## Setup
 * Clone project
 ```bash

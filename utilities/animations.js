@@ -236,19 +236,25 @@ Animations = {
     stars1: {
         0: {
             scale: 1,
-            color: 'rgba(200, 200, 200, 0.7)',
+            color: 'rgba(200, 200, 200, 0.5)',
             translateX: -70,
             translateY: 10,
         },
-        0.5: {
-            scale: 1.07,
+        0.3: {
+            scale: 1.09,
             color: 'rgba(255, 255, 255, 1)',
-            translateX: -70,
-            translateY: 10,
+            translateX: -64,
+            translateY: 8,
+        },
+        0.5: {
+            scale: 1.1,
+            color: 'rgba(255, 255, 255, 1)',
+            translateX: -64,
+            translateY: 8,
         },
         1: {
             scale: 1,
-            color: 'rgba(200, 200, 200, 0.7)',
+            color: 'rgba(200, 200, 200, 0.5)',
             translateX: -70,
             translateY: 10,
         }
@@ -260,11 +266,11 @@ Animations = {
             translateX: 40,
             translateY: 40,
         },
-        0.5: {
-            scale: 1.06,
+        0.7: {
+            scale: 1.07,
             color: 'rgba(255, 255, 255, 1)',
-            translateX: 40,
-            translateY: 40,
+            translateX: 36,
+            translateY: 37,
         },
         1: {
             scale: 1,
@@ -870,7 +876,7 @@ Animations = {
         },
         0.25: {
             scale: 1,
-            translateX: -4,
+            translateX: -6,
             translateY: 10,
         },
         0.5: {
@@ -880,7 +886,7 @@ Animations = {
         },
         0.75: {
             scale: 1,
-            translateX: 4,
+            translateX: 6,
             translateY: 10,
         },
         1: {

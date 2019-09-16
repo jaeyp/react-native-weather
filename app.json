@@ -26,7 +26,10 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.apk.my_variable"
+      "package": "com.apk.animated_weather",
+      "config": { 
+        "googleMaps": { "apiKey": "AIzaSyA9vo6w-k_dp2jaydolTsifljv5mTybUNk" } 
+      }
     }
   }
 }

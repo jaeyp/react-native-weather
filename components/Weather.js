@@ -3,14 +3,14 @@ import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from "rea
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import animationAPIs from '../assets/animationAPIs';
+import animationAPIs from '../utilities/animationAPIs';
 import gradientTable, { geoTable } from '../assets/dataTables';
 
 import * as Animatable from 'react-native-animatable';
 
 const AnimatedIconMCI = Animatable.createAnimatableComponent(MaterialCommunityIcons);
 
-const containers = {
+const containers = { // pure functions
     Animation: d => {
         return (
             <View style={styles.containerAnimation}>
@@ -32,7 +32,7 @@ const containers = {
                 <TouchableOpacity style={styles.buttonLeft} onPress={() => {}}>
                     <Entypo name={'chevron-left'} size={42} color={'black'} />
                 </TouchableOpacity>
-                <TouchableHighlight style={styles.buttonReload} onPress={() => fn.reload(geoTable)}>
+                <TouchableHighlight style={styles.buttonReload} onPress={() => fn.reload()}>
                     <AnimatedIconMCI name={'reload'} size={42} color={'black'} animation='rotate' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
                 </TouchableHighlight>
                 <TouchableOpacity style={styles.buttonRight} onPress={() => {}}>
@@ -57,14 +57,49 @@ const containers = {
             </View>
         );
     },
-    Description: d => {
+    Description: (d) => {
         const len = d.weather.description.length;
-        let size = len <= 16 ? 32 : (len > 23 ? 22 : 28);
+        let size = len <= 16 ? 32 : (len > 23 ? 24 : 28);
         return (
             <View style={{ ...styles.containerDescription, ...styles.containerText }}>
                 <Text style={{ ...styles.description, fontSize: size }}>{d.weather.description}</Text>
                 <Text style={styles.wind}>{d.wind.speed} meter/sec</Text>
-                <Text style={styles.region}>{d.region}, {d.country}</Text>
+            </View>
+        );
+    },
+    Region: (d, fn) => {
+        return (
+            <View style={{ ...styles.containerRegion }}>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn()}>
+                    <Text style={styles.region}>{d.geocode.city}, {d.country}</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    },
+    Menu2: (d, fn) => {
+        return (
+            <View style={{ ...styles.containerRegion }}>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn.add()}>
+                    <Text style={styles.region}>Add</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn.cancel()}>
+                    <Text style={styles.region}>Cancel</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    },
+    Menu3: (d, fn) => {
+        return (
+            <View style={{ ...styles.containerRegion }}>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn.add()}>
+                    <Text style={styles.region}>Add</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn.remove(d.geocode.city)}>
+                    <Text style={styles.region}>Remove</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonMap} onPress={() => fn.cancel()}>
+                    <Text style={styles.region}>Cancel</Text>
+                </TouchableOpacity>
             </View>
         );
     },
@@ -74,26 +109,42 @@ const containers = {
 export default class Weather extends React.Component {
     state = {
         isLoading: false,
+        isEditing: false,
     }
     
     _sleep = amount => {
         return new Promise((resolve, reject) => setTimeout(resolve, amount));
     }
-    _onPressReload = async (geoList) => {
+    _onPressReload = async () => {
         // reload: passing function for reloading weather info.
         // this function should be an arrow function to avoid this binding since arrow function never change its binding.
         this.setState({isLoading: true});
         //await this._sleep(0);
-        this.props.fnReload(geoList)
-            .then(()=>this.setState({isLoading: false}));
+        this.props.fnReload()
+            .then(()=>this.setState({isLoading: false, isEditing: false}));
     }
     _onPressPrev = () => {
         const prev = (this.props.index + this.props.data.length - 1) % this.props.data.length;
+        this.state.isEditing = false;
         this.props.fnPrev(prev);
     }
     _onPressNext = () => {
         const next = (this.props.index + 1) % this.props.data.length;
+        this.state.isEditing = false;
         this.props.fnNext(next);
+    }
+    _onPressRegion = () => {
+        this.setState({isEditing: true});
+    }
+    _onPressAdd = () => {
+        this.props.fnMap();
+    }
+    _onPressRemove = (region) => {
+        this.setState({isLoading: false, isEditing: false})
+        this.props.fnRemove(region);
+    }
+    _onPressCancel = () => {
+        this.setState({isEditing: false});
     }
     /**
      * If _onPressReload() is not an arrow function but a normal function,
@@ -102,16 +153,18 @@ export default class Weather extends React.Component {
      * return getScreen(this.props.data, this._onPressButton.bind(this));
      */
     render() {
-        const { isLoading } = this.state;
+        const { isLoading, isEditing } = this.state;
         const { index, data } = this.props;
-        const fn = {reload:this._onPressReload, prev: this._onPressPrev, next: this._onPressNext};
+        const fnNavigation = {reload:this._onPressReload, prev: this._onPressPrev, next: this._onPressNext};
+        const fnMenu = {add:this._onPressAdd, remove:this._onPressRemove, cancel:this._onPressCancel};
         //console.log(data[index]);
         return (
             <LinearGradient colors={gradientTable[data[index].dt.tod].gradient} style={styles.container}>
                 {containers.Animation(data[index])}
                 {containers.Temperature(data[index])}
-                {isLoading?containers.ButtonReload(fn):containers.Button(fn)}
+                {isLoading?containers.ButtonReload(fnNavigation):containers.Button(fnNavigation)}
                 {containers.Description(data[index])}
+                {isEditing?((index==0)?containers.Menu2(data[index], fnMenu):containers.Menu3(data[index], fnMenu)):containers.Region(data[index], this._onPressRegion)}
             </LinearGradient>
         );
     }
@@ -174,7 +227,13 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     containerDescription: {
-        flex: 1.2,
+        flex: 0.8,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    containerRegion: {
+        flex: 0.4,
+        flexDirection: 'row',
         justifyContent: "center",
         alignItems: "center"
     },
@@ -211,6 +270,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         marginLeft: 100,
     },
+    buttonMap: {
+        opacity: 0.3,
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        padding: 4,
+        paddingLeft: 12,
+        paddingRight: 12,
+        borderRadius: 10,
+        marginHorizontal: 8,
+    },
     temperature: {
         color: 'white',
         fontSize: 70,
@@ -232,12 +301,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         opacity: 0.5,
         fontWeight: 'bold',
-        marginBottom: 80,
+        marginBottom: 60,
     },
     region: {
-        color: 'white',
+        color: 'black',
         fontSize: 20,
-        opacity: 0.5,
+        opacity: 1,
         fontWeight: 'bold',
     },
 });

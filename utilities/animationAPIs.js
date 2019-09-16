@@ -572,7 +572,7 @@ const animation = {
     stars: (
 		<Fragment>
         <AnimatedIconIonicons style={styles.stars} name={'ios-star'} size={16} animation='stars1' delay={0} duration={6000} easing="linear" iterationCount='infinite' />
-        <AnimatedIconIonicons style={styles.stars} name={'ios-star'} size={16} animation='stars2' delay={3000} duration={6000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconIonicons style={styles.stars} name={'ios-star'} size={16} animation='stars2' delay={0} duration={6000} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     cloudsFew: (
@@ -759,17 +759,17 @@ const animation = {
     ),
     haze: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.haze} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.haze} name={'align-center'} size={size} animation='haze' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     mist: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.mist} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.mist} name={'align-center'} size={size} animation='haze' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     dust: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.dust} name={'align-center'} size={size} animation='haze' delay={0} duration={10000} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.dust} name={'align-center'} size={size} animation='haze' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     tornado: size => (
