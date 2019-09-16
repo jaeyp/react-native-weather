@@ -4,8 +4,7 @@ Learning React Native by Building a Simple Weather App
 * **weather scene**
 <img src="./assets/scene-explanation.png" width='600px'>  
 
-* **map scene**
-Adding new region
+* **map scene** - adding new region
 <img src="./assets/scene-map.png" width='800px'>  
 
 ## Setup from scratch
