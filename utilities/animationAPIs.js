@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Ionicons, FontAwesome, Feather, Entypo } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
+import { Ionicons, FontAwesome, Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import { screenH } from '../components/Loading';
 
@@ -678,35 +678,35 @@ const animation = {
     ),
     lightDrizzle: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMidSmall' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeftSmall' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRightSmall' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMidSmall' delay={0} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeftSmall' delay={200} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRightSmall' delay={400} duration={2400} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     moderateDrizzle: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={2400} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     heavyDrizzle: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size-4} animation='raindropMidLeft' delay={600} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size-4} animation='raindropMidRight' delay={800} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size-4} animation='raindropMidLeft' delay={600} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size-4} animation='raindropMidRight' delay={800} duration={2400} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     showerDrizzle: size => (
         <Fragment>
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMidSmall' delay={0} duration={600} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeftSmall' delay={200} duration={600} easing="linear" iterationCount='infinite' />
-        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRightSmall' delay={400} duration={600} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMid' delay={0} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeft' delay={200} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRight' delay={400} duration={2400} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropMidSmall' delay={0} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropLeftSmall' delay={200} duration={1200} easing="linear" iterationCount='infinite' />
+        <AnimatedIconFeather style={styles.drop} name={'more-horizontal'} size={size} animation='raindropRightSmall' delay={400} duration={1200} easing="linear" iterationCount='infinite' />
         </Fragment>
     ),
     lightSnow: size => (

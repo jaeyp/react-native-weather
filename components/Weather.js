@@ -22,13 +22,14 @@ const containers = { // pure functions
         return (
             <View style={styles.containerTemperature}>
                 <Text style={styles.temperature}>{d.temperature.current}&#176;</Text>
+                <Text style={styles.time}>{d.dt.localtime}</Text>
             </View>
         );
     },
-    ButtonReload: (fn) => {
-        return (
+    ButtonReload: (len, fn) => {
+        if(len > 1) {
+            return (
             <View style={styles.containerButton}>
-                {/* Supports touch screen */}
                 <TouchableOpacity style={styles.buttonLeft} onPress={() => {}}>
                     <Entypo name={'chevron-left'} size={42} color={'black'} />
                 </TouchableOpacity>
@@ -39,12 +40,21 @@ const containers = { // pure functions
                     <Entypo name={'chevron-right'} size={42} color={'black'} />
                 </TouchableOpacity>
             </View>
-        );
-    },
-    Button: (fn) => {
-        return (
+            );
+        } else {
+            return (
             <View style={styles.containerButton}>
-                {/* Supports touch screen */}
+                <TouchableHighlight style={styles.buttonReload} onPress={() => fn.reload()}>
+                    <AnimatedIconMCI name={'reload'} size={42} color={'black'} animation='rotate' delay={0} duration={4000} easing="linear" iterationCount='infinite' />
+                </TouchableHighlight>
+            </View>
+            );
+        }
+    },
+    Button: (len, fn) => {
+        if(len > 1) {
+            return (
+            <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.buttonLeft} onPress={() => fn.prev()}>
                     <Entypo name={'chevron-left'} size={42} color={'black'} />
                 </TouchableOpacity>
@@ -55,7 +65,16 @@ const containers = { // pure functions
                     <Entypo name={'chevron-right'} size={42} color={'black'} />
                 </TouchableOpacity>
             </View>
-        );
+            );
+        } else {
+            return (
+            <View style={styles.containerButton}>
+                <TouchableOpacity style={styles.button} onPress={() => fn.reload(geoTable)}>
+                    <MaterialCommunityIcons name={'reload'} size={42} color={'black'} />
+                </TouchableOpacity>
+            </View>
+            );
+        }
     },
     Description: (d) => {
         const len = d.weather.description.length;
@@ -106,7 +125,16 @@ const containers = { // pure functions
     },
 }
 
-//export default function Weather({data}) {
+/**
+ * Weather Component
+ * @param {*} index : current region index
+ * @param {*} data : weather data list
+ * @param {*} fnReload : reloads weather data
+ * @param {*} fnPrev : move to the previous region
+ * @param {*} fnNext : move to the next region
+ * @param {*} fnMap : open map
+ * @param {*} fnRemove : remove the current region
+ */
 export default class Weather extends React.Component {
     state = {
         isLoading: false,
@@ -116,11 +144,18 @@ export default class Weather extends React.Component {
     _sleep = amount => {
         return new Promise((resolve, reject) => setTimeout(resolve, amount));
     }
+    /**
+     *  Key handlers
+     *  These functions will be passed to other components for reloading weather info.
+     *  So, it should be an arrow function in order to avoid 'this' binding since arrow function never change its binding.
+     *  For example, 
+     *      If _onPressReload() is not an arrow function but a normal function,
+     *      We must bind 'this' to access 'this' within the current function scope, when we pass the function to other scope. 
+     *  Like this,
+     *      return getScreen(this.props.data, this._onPressReload.bind(this));
+     */
     _onPressReload = async () => {
-        // reload: passing function for reloading weather info.
-        // this function should be an arrow function to avoid this binding since arrow function never change its binding.
         this.setState({isLoading: true});
-        //await this._sleep(0);
         this.props.fnReload()
             .then(()=>this.setState({isLoading: false, isEditing: false}));
     }
@@ -147,12 +182,7 @@ export default class Weather extends React.Component {
     _onPressCancel = () => {
         this.setState({isEditing: false});
     }
-    /**
-     * If _onPressReload() is not an arrow function but a normal function,
-     * We must bind 'this' to access current this inside of the function. 
-     * Like this,
-     * return getScreen(this.props.data, this._onPressButton.bind(this));
-     */
+
     render() {
         const { isLoading, isEditing } = this.state;
         const { index, data } = this.props;
@@ -163,7 +193,7 @@ export default class Weather extends React.Component {
             <LinearGradient colors={gradientTable[data[index].dt.tod].gradient} style={styles.container}>
                 {containers.Animation(data[index])}
                 {containers.Temperature(data[index])}
-                {isLoading?containers.ButtonReload(fnNavigation):containers.Button(fnNavigation)}
+                {isLoading?containers.ButtonReload(data.length, fnNavigation):containers.Button(data.length, fnNavigation)}
                 {containers.Description(data[index])}
                 {isEditing?((index==0)?containers.Menu2(data[index], fnMenu):containers.Menu3(data[index], fnMenu)):containers.Region(data[index], this._onPressRegion)}
             </LinearGradient>
@@ -288,8 +318,8 @@ const styles = StyleSheet.create({
     },
     time: {
         color: 'white',
-        fontSize: 14,
-        opacity: 0.5,
+        fontSize: 16,
+        opacity: 0.3,
         fontWeight: 'bold',
     },
     description: {

@@ -11,23 +11,20 @@ import Map from './Map';
 import registerAnimation from '../utilities/animations';
 import { geoTable } from '../assets/dataTables';
 
-const API_KEY = 'c787ac53f8cd62c85720a5e465fbdc2e';
+const API_KEY = 'weather_key_from_openweathermap.org';
 
 const stateMachine = {
     initialState: 'loading',
     states: {
-        loading: {
-
-        },
-        weather: {
-
-        },
-        map: {
-
-        }
+        loading: {},
+        weather: {},
+        map: {}
     }
 }
 
+/**
+ * Scene Component
+ */
 export default class Scene extends React.Component {
     geoIndex = 0;
     state = {
@@ -36,17 +33,9 @@ export default class Scene extends React.Component {
         weatherList: [],
         index: 0,
     }
-    /* Expo doesn’t currently support background task functionality.
-    timer = () => setTimeout(()=>{this.getLocation() // 1. Get Location data
-        .then(this.getWeather) // 2. Get Weather data
-        .then(w => { console.log('Got weather data successfully:'); console.log(w); })
-        .catch(e => console.log(e.message));},
-        60000);
-    */
 
     /**
-     * Convert target place's time to minutes
-     * e.i. We can get the local minutes of Seoul, Korea from Kitchener, Canada
+     * Gets target place's time information in minutes form
      * @param {*} dt: datetime data 
      */
     _getLocalMinutes = (dt) => {
@@ -65,10 +54,11 @@ export default class Scene extends React.Component {
         // get time to sunrise & sunset
         let toSunrise = minutesSunrise - minutesCurrent;
         let toSunset = minutesSunset - minutesCurrent;
+        // get localtime - to fix an half hour and 45 minutes time zone issue.
+        let localHours = parseInt(minutesCurrent / 60);
+        let localMinutes = minutesCurrent - localHours * 60;
+        dt.localtime = `${("0" + localHours).slice(-2)}:${("0" + localMinutes).slice(-2)}`;
 
-        console.log(`Current Time: ${hoursCurrent}:${dt.forecast.getMinutes()}`);
-        console.log(`minutesCurrent(${minutesCurrent}) minutesSunrise(${minutesSunrise}) minutesSunset(${minutesSunset})`);
-        console.log(`toSunrise(${toSunrise}) toSunset(${toSunset})`);
         return { current: minutesCurrent, toSunrise, toSunset };
     }
     _getTOD = (dt) => {  // get time of day
@@ -85,15 +75,18 @@ export default class Scene extends React.Component {
         else if (min.toSunset < 0 && min.toSunset >= -60) tod = 'Dust';
         else if (min.toSunset < -60 && min.toSunset >= -180) tod = 'Evening';
         else if (min.toSunset < -180 && min.current < 1320) tod = 'BeforeNight';
-        else if (min.current < 120 || min.current >= 1320) tod = 'Midnight';
-        else if (min.current >= 120 && min.toSunrise >= 60) tod = 'AfterNight';
+        else if (min.current < 180 || min.current >= 1320) tod = 'Midnight';
+        else if (min.current >= 180 && min.toSunrise >= 60) tod = 'AfterNight';
         else tod = 'Evening';
 
-        //console.log(`Times of Day: ${tod}`);
         return tod;
     };
+    /**
+     * Gets weather data from openweathermap.org
+     * Check ./assets/sample.openweathermap.json for more details about this destructuring assignment
+     * @param {*} geo : coordinates
+     */
     _getWeather = async (geo) => {
-        // Get weather data from openweathermap.org - check ./assets/sample.openweathermap.json for details about this destructuring assignment
         const { data: { name: region,
             clouds: { all: cloudiness },
             main: { humidity, temp, temp_max, temp_min },
@@ -127,17 +120,13 @@ export default class Scene extends React.Component {
         data.dt.tod = this._getTOD(data.dt);
         data.geocode = (geo.city==null)?{...geo, city:data.region}:geo;
 
-        console.log(`forecasted Time: ${data.dt.forecast.toString()} (${forecast})
-Sunrise Time:    ${data.dt.sunrise.toString()} (${sunrise})
-Sunset Time:     ${data.dt.sunset.toString()} (${sunset})
-Time of Day:     ${data.dt.tod}`);
-        // Update Component to quit Loading screen
-        // jaey. test weather list - this.setState({ isLoading: false, weather: { ...data } }); // using spread operator for deep-copy
         return data;
     }
+    /**
+     * Gets geo-location of device
+     * Check ./assets/sample.expo.json for more details
+     */
     _getLocation = async () => {
-        const d = new Date();
-        //console.log(`invoked getLocation() - ${d.toString()}`);
         try {
             // Get device permission for location - Check ./assets/sample.expo.json for details
             let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -146,10 +135,8 @@ Time of Day:     ${data.dt.tod}`);
                 throw Error('Permission request was rejected.');
             }
 
-            // Get geo-location of device - Check ./assets/sample.expo.json for details
-           const { coords: { altitude: alt, latitude: lat, longitude: lon }, timestamp }
+            const { coords: { altitude: alt, latitude: lat, longitude: lon }, timestamp }
                 = await Location.getCurrentPositionAsync(); // destructuring assignment
-            //console.log(`altitude: ${alt} latitude: ${lat} longitude: ${lon} ts: ${timestamp}`);
 
             return { city:null, lat, lon };
         } catch (e) {
@@ -157,12 +144,22 @@ Time of Day:     ${data.dt.tod}`);
             Alert.alert(`Can't find you.\nSo sad.`);
         }
     }
-    _sort = weatherList => {
+    /**
+     * Rearranges weather item's order based on the time zone of the current location.
+     * For Example, after sorting, it allows to navigate other region like below,
+     *      here in Kitchener, Vancouver places in the left side for navigating
+     *      while St. John's places in the right side for it.
+     * @param {*} ctz : current location's timezone
+     * @param {*} weatherList : weather data list
+     */
+    _sort = (ctz, weatherList) => {
         function compare(a, b) {
+            let atz = (a.dt.timezone<ctz)?a.dt.timezone + 86400:a.dt.timezone;
+            let btz = (b.dt.timezone<ctz)?b.dt.timezone + 86400:b.dt.timezone;
             let comparison = 0;
-            if (a.dt.timezone > b.dt.timezone)
+            if (atz > btz)
                 comparison = 1;
-            else if (a.dt.timezone < b.dt.timezone)
+            else if (atz < btz)
                 comparison = -1;
             else {
                 if (a.region > b.region)
@@ -184,7 +181,6 @@ Time of Day:     ${data.dt.tod}`);
         // Loads weather data
         this._getLocation()          // 1. Get Location data
             .then(this._getWeather)  // 2. Get Weather data
-            .then(w => {console.log('Got weather data successfully:')})
             .catch(e => console.log(e.message));
     }
     _loadDataList = async () => {
@@ -196,7 +192,6 @@ Time of Day:     ${data.dt.tod}`);
         return this._getLocation()   // Step-1. Get current location
             .then(this._getWeather)  // Step-2. Get weather data for current location
             .then(w => {
-                console.log('Got weather data successfully:');
                 local = {...w}; 
 
                 // TODO: get geoList from AsyncStorage 
@@ -206,8 +201,6 @@ Time of Day:     ${data.dt.tod}`);
                     promises.push(
                         this._getWeather(geo)
                             .then(data => {
-                                //console.log(`Got ${geo.city}'s weather info.----------------------------`);
-                                //console.log(data);
                                 otherRegions.push(data);
                             })
                             .catch(e => console.log(`error: ${e.message}`))
@@ -216,25 +209,19 @@ Time of Day:     ${data.dt.tod}`);
                 // Step-4. Get weather data for other regions concurrently
                 return Promise.all(promises)
                     .then(() => {
-                        console.log(`Got weather list succesffully`);
                         // Step-5. Sort the other regions' weather data based on its timezone.
-                        this._sort(otherRegions);
-                        // Step-6. Merge all weather data (local & other regions) - local data is always placed at first.
-                        //this.setState({ isLoading: false, weatherList: [local, ...otherRegions] });
+                        this._sort(local.dt.timezone, otherRegions);
+                        // Step-6. Merge all weather data (local & other regions) and Do rendering Weather Component.
+                        // local data is always placed at first.
                         this.setState({ sceneState: 'weather', weatherList: [local, ...otherRegions] });
                     })
                     .catch(e => console.log(`error: ${e.message}`));
             })
             .catch(e => console.log(e.message));
     }
-    //_addRegion = () => {console.log(`Added new region`)}
-    //_removeRegion = () => {console.log(`Removed region`)}
     _addRegion = geo => {
-        let geoList = this.state.regions;
-        console.log(`add regions: ${geo.city} <<<<<===================================================================`);
-        console.log(geo);
-        console.log(geoList);
         this.state.regions.push(geo);
+        this.setState({ sceneState: 'loading'});
         this._loadDataList();
     }
     _removeRegion = dest => {
@@ -246,12 +233,11 @@ Time of Day:     ${data.dt.tod}`);
         weatherList.forEach((item, index, obj) => {
             if(item.geocode.city == dest) {
                 obj.splice(index, 1);
-                if(index >= obj.length) pos--;
+                if(index >= obj.length) pos--; // if we removed last item, moves back the current position.
             }
         })
 
         // Remove region data
-        console.log(regionList);
         regionList.forEach((item, index, obj) => {
             if(item.city == dest) {
                 obj.splice(index, 1);
@@ -260,18 +246,19 @@ Time of Day:     ${data.dt.tod}`);
         
         this.setState({ sceneState: 'weather', index: pos, weatherList: [...weatherList], regions: [...regionList] });
     }
+    /**
+     * Switchs the current scene according to sceneState.
+     */
     _scene = () => { 
         let scene; 
         let w = this.state.weatherList[this.state.index];
 
         switch(this.state.sceneState) {
             case 'loading':
-                //scene = <Loading tod={this.state.weatherList[this.state.index].dt.tod} />;
                 scene = <Loading tod={'Morning'} />;
                 break;
             case 'weather':
                 scene = <Weather
-                    //data={weathers[index]} 
                     index={this.state.index}
                     data={this.state.weatherList}
                     fnReload={this._loadDataList}
@@ -294,31 +281,25 @@ Time of Day:     ${data.dt.tod}`);
         }
         return scene;
     }
+
     componentWillMount() {
+        // Step.1 - Registers weather animations
         registerAnimation();
+
+        // Step.2 - Sets default region info
+        // TODO: App will be started without any other region data but current location.
         this.state.regions = geoTable;
+
+        // Step.3 - Loads weather data
         this._loadDataList();
     }
-    render() {
-        const { isLoading, weatherList, index, tod } = this.state;
-        //console.log(weatherList[index]);
 
+    render() {
         return (
-            //<DisplayLatLng style={{flex: 1}} />
             this._scene()
-            //isLoading ? <Loading tod={tod} /> : <DisplayLatLng style={{flex: 1}} />
-            /*
-                <Weather
-                    //data={weathers[index]} 
-                    index={index}
-                    data={weatherList}
-                    fnReload={this.loadDataList}
-                    fnPrev={prev => this.setState({ index: prev })}
-                    fnNext={next => this.setState({ index: next })}
-                />
-                */
         );
     }
+
     componentWillUnmount() {
     }
 }

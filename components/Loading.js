@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,8 +39,8 @@ const containers = {
 }
 
 /**
- * Loading Components
- * @param {*} data 
+ * Loading Component
+ * @param {*} data : times of day
  */
 export default function Loading(data) {
     return (
