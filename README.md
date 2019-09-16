@@ -1,6 +1,9 @@
 # react-native-weather
 Learning React Native by Building a Simple Weather App
 
+* **weather scene**
+<img src="./assets/scene-explanation.png" width='400px'>  
+
 ## Setup from scratch
 * Install Expo CLI
 ```bash
