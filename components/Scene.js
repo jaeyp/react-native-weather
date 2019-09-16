@@ -53,9 +53,9 @@ export default class Scene extends React.Component {
         // get local timezone offset
         const offset = new Date().getTimezoneOffset();
         // get target place's hours
-        let hoursCurrent = (dt.forecast.getHours() + (dt.timezone / 3600) + (offset / 60)) % 24;
-        let hoursSunrise = (dt.sunrise.getHours() + (dt.timezone / 3600) + (offset / 60)) % 24;
-        let hoursSunset = (dt.sunset.getHours() + (dt.timezone / 3600) + (offset / 60)) % 24;
+        let hoursCurrent = (dt.forecast.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
+        let hoursSunrise = (dt.sunrise.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
+        let hoursSunset = (dt.sunset.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
         // get target place's minutes
         let minutesCurrent = hoursCurrent * 60 + dt.forecast.getMinutes();
         let minutesSunrise = hoursSunrise * 60 + dt.sunrise.getMinutes();
@@ -66,9 +66,9 @@ export default class Scene extends React.Component {
         let toSunrise = minutesSunrise - minutesCurrent;
         let toSunset = minutesSunset - minutesCurrent;
 
-        //console.log(`Current Time: ${hoursCurrent}:${dt.forecast.getMinutes()}`);
-        //console.log(`minutesCurrent(${minutesCurrent}) minutesSunrise(${minutesSunrise}) minutesSunset(${minutesSunset})`);
-        //console.log(`toSunrise(${toSunrise}) toSunset(${toSunset})`);
+        console.log(`Current Time: ${hoursCurrent}:${dt.forecast.getMinutes()}`);
+        console.log(`minutesCurrent(${minutesCurrent}) minutesSunrise(${minutesSunrise}) minutesSunset(${minutesSunset})`);
+        console.log(`toSunrise(${toSunrise}) toSunset(${toSunset})`);
         return { current: minutesCurrent, toSunrise, toSunset };
     }
     _getTOD = (dt) => {  // get time of day
@@ -76,12 +76,17 @@ export default class Scene extends React.Component {
         let tod = ''; // Times of Day
         if (min.toSunrise < 60 && min.toSunrise >= 0) tod = 'Dawn';
         else if (min.toSunrise < 0 && min.toSunrise >= -60) tod = 'Sunrise';
-        else if (min.toSunrise < -60 && min.current < 660) tod = 'Morning';
+        else if (min.toSunrise < -60 && min.toSunrise >= -180) tod = 'AfterSunrise';
+        else if (min.toSunrise < -180 && min.current < 660) tod = 'Morning';
         else if (min.current >= 660 && min.current < 780) tod = 'Noon';
-        else if (min.current >= 780 && min.toSunset >= 60) tod = 'Afternoon';
+        else if (min.current >= 780 && min.toSunset >= 180) tod = 'Afternoon';
+        else if (min.toSunset < 180 && min.toSunset >= 60) tod = 'BeforeSunset';
         else if (min.toSunset < 60 && min.toSunset >= 0) tod = 'Sunset';
         else if (min.toSunset < 0 && min.toSunset >= -60) tod = 'Dust';
+        else if (min.toSunset < -60 && min.toSunset >= -180) tod = 'Evening';
+        else if (min.toSunset < -180 && min.current < 1320) tod = 'BeforeNight';
         else if (min.current < 120 || min.current >= 1320) tod = 'Midnight';
+        else if (min.current >= 120 && min.toSunrise >= 60) tod = 'AfterNight';
         else tod = 'Evening';
 
         //console.log(`Times of Day: ${tod}`);
@@ -122,12 +127,10 @@ export default class Scene extends React.Component {
         data.dt.tod = this._getTOD(data.dt);
         data.geocode = (geo.city==null)?{...geo, city:data.region}:geo;
 
-        /*
         console.log(`forecasted Time: ${data.dt.forecast.toString()} (${forecast})
 Sunrise Time:    ${data.dt.sunrise.toString()} (${sunrise})
 Sunset Time:     ${data.dt.sunset.toString()} (${sunset})
 Time of Day:     ${data.dt.tod}`);
-*/
         // Update Component to quit Loading screen
         // jaey. test weather list - this.setState({ isLoading: false, weather: { ...data } }); // using spread operator for deep-copy
         return data;

@@ -14,7 +14,7 @@ const containers = {
     SunNMoon: tod => {
         return (
             <View style={styles.containerTop}>
-            {animationAPIs[800]((tod == "Evening" || tod == "Midnight") ? true : false)}
+            {animationAPIs[800]((tod == "Evening" || tod == "BeforeNight" || tod == "Midnight" || tod == "AfterNight") ? true : false)}
             </View>
         );
     },

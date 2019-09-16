@@ -14,7 +14,7 @@ const containers = { // pure functions
     Animation: d => {
         return (
             <View style={styles.containerAnimation}>
-                {animationAPIs[d.weather.id]((d.dt.tod == "Evening" || d.dt.tod == "Midnight") ? true : false)}
+                {animationAPIs[d.weather.id]((d.dt.tod == "Evening" || d.dt.tod == "BeforeNight" || d.dt.tod == "Midnight" || d.dt.tod == "AfterNight") ? true : false)}
             </View>
         );
     },
@@ -64,6 +64,7 @@ const containers = { // pure functions
             <View style={{ ...styles.containerDescription, ...styles.containerText }}>
                 <Text style={{ ...styles.description, fontSize: size }}>{d.weather.description}</Text>
                 <Text style={styles.wind}>{d.wind.speed} meter/sec</Text>
+                {/*<Text style={styles.wind}>{d.dt.tod}</Text>*/}
             </View>
         );
     },
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
         marginLeft: 100,
     },
     buttonMap: {
-        opacity: 0.3,
+        opacity: 0.4,
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
         padding: 4,

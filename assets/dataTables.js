@@ -1,14 +1,18 @@
 
 export default gradientTable = {
-    Midnight: {gradient: ['#5F5A56', '#4C4447', '#3A3038'],},
+    Midnight: {gradient: ['#4C4447', '#3A3038', '#1A1018'],},
+    AfterNight: {gradient: ['#1A1018', '#3A3038', '#503844'],},
     Dawn: {gradient: ['#F2C2D4', '#D3C4F2', '#6289D9'],},
-    Sunrise: {gradient: ['#F2BE5C', '#F2CEA2', '#D3C4F2'],},
+    Sunrise: {gradient: ['#F2AE4C', '#F2CEA2', '#D3C4F2'],},
+    AfterSunrise: {gradient: ['#8EE1FF', '#65C3EF', '#F3C4D2'],},
     Morning: {gradient: ['#BEF1FF', '#A5E3FF', '#549ED6'],},
     Noon: {gradient: ['#9EF1FF', '#75D3FF', '#348EC6'],},
     Afternoon: {gradient: ['#8EE1FF', '#65C3EF', '#247EB6'],},
+    BeforeSunset: {gradient: ['#8EE1FF', '#65C3EF', '#F29544'],},
     Sunset: {gradient: ['#BEF1FF', '#F2CF8D', '#F29544'],},
-    Dust: {gradient: ['#F29544', '#A63F03', '#732C02'],},
-    Evening: {gradient: ['#536C72', '#5F5A56', '#4C4447'],},
+    Dust: {gradient: ['#F29544', '#A63F03', '#330C02'],},
+    Evening: {gradient: ['#536C92', '#444858', '#1A1018'],},
+    BeforeNight: {gradient: ['#5F5A56', '#3A3038', '#1A1018'],},
 }
 
 /* Testing Random City */

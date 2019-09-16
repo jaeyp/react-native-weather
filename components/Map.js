@@ -133,7 +133,7 @@ class DisplayLatLng extends React.Component {
     // Works on both iOS and Android
     Alert.alert(
         'Do you want to add this location?',
-        `${(region==null)?street:region}, ${countryCode}`,
+        `${(region==null)?street:region}, ${countryCode} (${this.state.region.latitude.toPrecision(7)}, ${this.state.region.longitude.toPrecision(7)})`,
         [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: 'OK', onPress: () => this.props.fnAdd({city: region, lat: location.latitude, lon: location.longitude})},
