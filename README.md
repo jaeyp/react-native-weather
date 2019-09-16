@@ -77,11 +77,13 @@ or
 ## Build
 * android
 ```bash
+~$ expo start
 ~$ expo build:android
 ```
 
 * ios
 ```bash
+~$ expo start
 ~$ expo build:ios
 ```
 
