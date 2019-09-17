@@ -35,53 +35,6 @@ export default class Scene extends React.Component {
     }
 
     /**
-     * Gets target place's time information in minutes form
-     * @param {*} dt: datetime data 
-     */
-    _getLocalMinutes = (dt) => {
-        // get local timezone offset
-        const offset = new Date().getTimezoneOffset();
-        // get target place's hours
-        let hoursCurrent = (dt.forecast.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
-        let hoursSunrise = (dt.sunrise.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
-        let hoursSunset = (dt.sunset.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
-        // get target place's minutes
-        let minutesCurrent = hoursCurrent * 60 + dt.forecast.getMinutes();
-        let minutesSunrise = hoursSunrise * 60 + dt.sunrise.getMinutes();
-        if (minutesSunrise < 0) minutesSunrise = minutesSunrise + 1440;
-        let minutesSunset = hoursSunset * 60 + dt.sunset.getMinutes();
-        if (minutesSunset < 0) minutesSunset = minutesSunset + 1440;
-        // get time to sunrise & sunset
-        let toSunrise = minutesSunrise - minutesCurrent;
-        let toSunset = minutesSunset - minutesCurrent;
-        // get localtime - to fix an half hour and 45 minutes time zone issue.
-        let localHours = parseInt(minutesCurrent / 60);
-        let localMinutes = minutesCurrent - localHours * 60;
-        dt.localtime = `${("0" + localHours).slice(-2)}:${("0" + localMinutes).slice(-2)}`;
-
-        return { current: minutesCurrent, toSunrise, toSunset };
-    }
-    _getTOD = (dt) => {  // get time of day
-        let min = this._getLocalMinutes(dt);
-        let tod = ''; // Times of Day
-        if (min.toSunrise < 60 && min.toSunrise >= 0) tod = 'Dawn';
-        else if (min.toSunrise < 0 && min.toSunrise >= -60) tod = 'Sunrise';
-        else if (min.toSunrise < -60 && min.toSunrise >= -180) tod = 'AfterSunrise';
-        else if (min.toSunrise < -180 && min.current < 660) tod = 'Morning';
-        else if (min.current >= 660 && min.current < 780) tod = 'Noon';
-        else if (min.current >= 780 && min.toSunset >= 180) tod = 'Afternoon';
-        else if (min.toSunset < 180 && min.toSunset >= 60) tod = 'BeforeSunset';
-        else if (min.toSunset < 60 && min.toSunset >= 0) tod = 'Sunset';
-        else if (min.toSunset < 0 && min.toSunset >= -60) tod = 'Dust';
-        else if (min.toSunset < -60 && min.toSunset >= -180) tod = 'Evening';
-        else if (min.toSunset < -180 && min.current < 1320) tod = 'BeforeNight';
-        else if (min.current < 180 || min.current >= 1320) tod = 'Midnight';
-        else if (min.current >= 180 && min.toSunrise >= 60) tod = 'AfterNight';
-        else tod = 'Evening';
-
-        return tod;
-    };
-    /**
      * Gets weather data from openweathermap.org
      * Check ./assets/sample.openweathermap.json for more details about this destructuring assignment
      * @param {*} geo : coordinates
@@ -145,7 +98,7 @@ export default class Scene extends React.Component {
         }
     }
     /**
-     * Rearranges weather item's order based on the time zone of the current location.
+     * Rearranges weather items' order based on the time zone of the current location.
      * For Example, after sorting, it allows to navigate other region like below,
      *      here in Kitchener, Vancouver places in the left side for navigating
      *      while St. John's places in the right side for it.
@@ -157,11 +110,12 @@ export default class Scene extends React.Component {
             let atz = (a.dt.timezone<ctz)?a.dt.timezone + 86400:a.dt.timezone;
             let btz = (b.dt.timezone<ctz)?b.dt.timezone + 86400:b.dt.timezone;
             let comparison = 0;
+
             if (atz > btz)
                 comparison = 1;
             else if (atz < btz)
                 comparison = -1;
-            else {
+            else { // if both are in the same timezone, follows alphabet order
                 if (a.region > b.region)
                     comparison = 1;
                 else
@@ -171,6 +125,64 @@ export default class Scene extends React.Component {
         }
         weatherList.sort(compare);
     }
+    /**
+     * Gets target place's time information in minutes form
+     * @param {*} dt: datetime data 
+     */
+    _getLocalMinutes = (dt) => {
+        // get local timezone offset
+        const offset = new Date().getTimezoneOffset();
+        // get target place's hours
+        let hoursCurrent = (dt.forecast.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
+        let hoursSunrise = (dt.sunrise.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
+        let hoursSunset = (dt.sunset.getHours() + (dt.timezone / 3600) + (offset / 60) + 24) % 24;
+        // get target place's minutes
+        let minutesCurrent = hoursCurrent * 60 + dt.forecast.getMinutes();
+        let minutesSunrise = hoursSunrise * 60 + dt.sunrise.getMinutes();
+        let minutesSunset = hoursSunset * 60 + dt.sunset.getMinutes();
+        // get localtime - to fix an half hour and 45 minutes time zone issue.
+        let localHours = parseInt(minutesCurrent / 60);
+        let localMinutes = minutesCurrent - localHours * 60;
+
+        if (minutesSunrise < 0) minutesSunrise = minutesSunrise + 1440;
+        if (minutesSunset < 0) minutesSunset = minutesSunset + 1440;
+        dt.localtime = `${("0" + localHours).slice(-2)}:${("0" + localMinutes).slice(-2)}`;
+
+        return { current: minutesCurrent, toSunrise: minutesSunrise - minutesCurrent, toSunset: minutesSunset - minutesCurrent };
+    }
+    /**
+     * Gets Times of Day from time
+     *  Background color changed corresponding to 12 ToD types
+     *  12 ToD: 
+     *      Midnight > AfterNight > Dawn > Sunrise > 
+     *      AfterSunrise > Morning > Noon > Afternoon > 
+     *      BeforeSunset > Sunset > Dust > BeforeNight > Midnight
+     *  cf. Dawn to Sunrise and Sunset to Dust periods depends on daily sunrise & sunset time.
+     */
+    _getTOD = (dt) => {
+        let min = this._getLocalMinutes(dt);
+        let tod = '';
+
+        if (min.current >=180 && min.current < 660) {
+            if (min.toSunrise >= 60) tod = 'AfterNight';
+            else if (min.toSunrise < 60 && min.toSunrise >= 0) tod = 'Dawn';
+            else if (min.toSunrise < 0 && min.toSunrise >= -60) tod = 'Sunrise';
+            else if (min.toSunrise < -60 && min.toSunrise >= -180) tod = 'AfterSunrise';
+            else tod = 'Morning';
+        } 
+        else if (min.current >= 660 && min.current < 780) tod = 'Noon';
+        else if (min.current >= 780 && min.current < 1320) {
+            if (min.toSunset >= 180) tod = 'Afternoon';
+            else if (min.toSunset < 180 && min.toSunset >= 60) tod = 'BeforeSunset';
+            else if (min.toSunset < 60 && min.toSunset >= 0) tod = 'Sunset';
+            else if (min.toSunset < 0 && min.toSunset >= -60) tod = 'Dust';
+            else if (min.toSunset < -60 && min.toSunset >= -180) tod = 'Evening';
+            else tod = 'BeforeNight';
+        }
+        else tod = 'Midnight';
+
+        return tod;
+    };
     _loadData = (currentTod) => {
         // Sets isLoading true here for reloading feature
         if (currentTod != undefined)
@@ -183,6 +195,9 @@ export default class Scene extends React.Component {
             .then(this._getWeather)  // 2. Get Weather data
             .catch(e => console.log(e.message));
     }
+    /**
+     * Gets the weather data of given location list (Step 1 to 6)
+     */
     _loadDataList = async () => {
         let local;  // weather information for current location
         let otherRegions = [];  // weather information for other regions
@@ -192,7 +207,7 @@ export default class Scene extends React.Component {
         return this._getLocation()   // Step-1. Get current location
             .then(this._getWeather)  // Step-2. Get weather data for current location
             .then(w => {
-                local = {...w}; 
+                local = {...w}; // copy local weather
 
                 // TODO: get geoList from AsyncStorage 
 
@@ -236,14 +251,12 @@ export default class Scene extends React.Component {
                 if(index >= obj.length) pos--; // if we removed last item, moves back the current position.
             }
         })
-
         // Remove region data
         regionList.forEach((item, index, obj) => {
             if(item.city == dest) {
                 obj.splice(index, 1);
             }
-        }) 
-        
+        })         
         this.setState({ sceneState: 'weather', index: pos, weatherList: [...weatherList], regions: [...regionList] });
     }
     /**
