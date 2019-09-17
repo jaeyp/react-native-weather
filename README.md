@@ -5,7 +5,7 @@ Learning React Native by Building a Simple Weather App
 <img src="./assets/scene-explanation.png" width='600px'>  
 
 * **map scene** - adding new region
-<img src="./assets/scene-map.png" width='800px'>  
+<img src="./assets/scene-map.png" width='918px'>  
 
 ## Setup from scratch
 * Install Expo CLI
