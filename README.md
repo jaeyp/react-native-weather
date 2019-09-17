@@ -1,6 +1,8 @@
 # react-native-weather
 Learning React Native by Building a Simple Weather App
 
+* [demo video](https://youtu.be/gbH2cuuUjHc)
+
 * **weather scene**
 <img src="./assets/scene-explanation.png" width='600px'>  
 
