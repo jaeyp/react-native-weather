@@ -11,7 +11,6 @@ Learning React Native by Building a Simple Weather App
 
 * [Setup](#setup)
 * [Build](#build)
-* [Run](#run)
 * [APIs](#apis)
 * [License](#license)
 
