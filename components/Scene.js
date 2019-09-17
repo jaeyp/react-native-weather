@@ -84,7 +84,6 @@ export default class Scene extends React.Component {
             // Get device permission for location - Check ./assets/sample.expo.json for details
             let { status } = await Permissions.askAsync(Permissions.LOCATION);
             if (status !== 'granted') {
-                ``
                 throw Error('Permission request was rejected.');
             }
 
