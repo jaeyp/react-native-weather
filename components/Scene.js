@@ -151,7 +151,7 @@ export default class Scene extends React.Component {
     }
     /**
      * Gets Times of Day from time
-     *  Background color changed corresponding to 12 ToD types
+     *  Background color is changed corresponding to 12 ToD types
      *  12 ToD: 
      *      Midnight > AfterNight > Dawn > Sunrise > 
      *      AfterSunrise > Morning > Noon > Afternoon > 
