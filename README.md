@@ -7,6 +7,16 @@ Learning React Native by Building a Simple Weather App
 * **map scene** - adding new region
 <img src="./assets/scene-map.png" width='918px'>  
 
+## Table of contents
+
+* [Setup](#setup)
+* [Build](#build)
+* [Run](#run)
+* [APIs](#apis)
+* [License](#license)
+
+---  
+
 ## Setup from scratch
 * Install Expo CLI
 ```bash
@@ -69,6 +79,8 @@ or
 ~$ yarn add react-native-geocoding
 ```
 
+---  
+
 ## Setup
 * Clone project
 ```bash
@@ -79,6 +91,8 @@ or
 ```bash
 ~$ yarn install
 ```
+
+---  
 
 ## Build
 * android
@@ -93,11 +107,21 @@ or
 ~$ expo build:ios
 ```
 
+---  
+
 ## Run the app
 ```bash
 ~$ yarn start
 ```
 
+---  
+
 ## APIs
 * [Google Maps APIs](https://cloud.google.com/maps-platform/)  
 * [Open Weather APIs](https://openweathermap.org/)  
+
+---  
+
+### License
+
+MIT © [Jaehyun Park](https://portfolio.jaeyp.xyz).
