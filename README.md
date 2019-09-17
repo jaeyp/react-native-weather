@@ -1,13 +1,13 @@
 # react-native-weather
 Learning React Native by Building a Simple Weather App
 
-* [demo video](https://youtu.be/gbH2cuuUjHc)
-
 * **weather scene**
 <img src="./assets/scene-explanation.png" width='600px'>  
 
 * **map scene** - adding new region
 <img src="./assets/scene-map.png" width='918px'>  
+
+* [demo video](https://youtu.be/gbH2cuuUjHc)  
 
 ## Table of contents
 
