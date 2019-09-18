@@ -203,6 +203,12 @@ export default class Scene extends React.Component {
         let promises = [];
         let geoList = this.state.regions;
 
+        /**
+         * If we include the request of the current location into promises for Promise.all() 
+         *  and run all the request concurrently, data loading performance would be better.
+         * However, I separate the request here in order to practice and understand
+         *  more complex sequential promises situation making use of spread operator.
+         */
         return this._getLocation()   // Step-1. Get current location
             .then(this._getWeather)  // Step-2. Get weather data for current location
             .then(w => {
