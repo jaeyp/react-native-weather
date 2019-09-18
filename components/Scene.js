@@ -182,6 +182,9 @@ export default class Scene extends React.Component {
 
         return tod;
     };
+    /**
+     * This function was deprecated in favor of _loadDataList()
+     */
     _loadData = (currentTod) => {
         // Sets isLoading true here for reloading feature
         if (currentTod != undefined)
