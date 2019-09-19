@@ -102,8 +102,9 @@ or
 ~$ expo build:android
 ```
 
-* ios (this has never been tested, you will see some issues to solve)
+* ios  
 ```bash
+# ios-build has never been tested, you will see some issues to solve.
 ~$ expo start
 ~$ expo build:ios
 ```
