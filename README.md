@@ -102,7 +102,7 @@ or
 ~$ expo build:android
 ```
 
-* ios
+* ios (this has never been tested, you will see some issues to solve)
 ```bash
 ~$ expo start
 ~$ expo build:ios
