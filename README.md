@@ -104,7 +104,7 @@ or
 
 * ios  
 ```bash
-# ios-build has never been tested, you will see some issues to solve.
+# ios-build has never been tested, you might see some issues to solve.
 ~$ expo start
 ~$ expo build:ios
 ```
