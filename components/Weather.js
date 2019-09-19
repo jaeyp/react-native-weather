@@ -146,7 +146,7 @@ export default class Weather extends React.Component {
     }
     /**
      *  Key handlers
-     *  These functions will be passed to other components for reloading weather info.
+     *  These functions will be passed to other components for reloading, navigating weather info. and managing regions.
      *  So, it should be an arrow function in order to avoid 'this' binding since arrow function never change its binding.
      *  For example, 
      *      If _onPressReload() is not an arrow function but a normal function,
