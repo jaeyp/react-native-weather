@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AsyncStorage } from 'react-native';
+import { Alert, AsyncStorage, BackHandler } from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import Weather from './Weather';
 import Map from './Map';
 
 import registerAnimation from '../utilities/animations';
+import CustomError, { ErrType } from '../utilities/errors';
 import { geoTable } from '../assets/dataTables';
 
 const API_KEY = 'weather_key_from_openweathermap.org';
@@ -26,12 +27,15 @@ const stateMachine = {
  * Scene Component
  */
 export default class Scene extends React.Component {
-    geoIndex = 0;
-    state = {
-        sceneState: stateMachine.initialState,
-        regions: [],
-        weatherList: [],
-        index: 0,
+    constructor(props) {
+        super(props);
+        this.state = {
+            sceneState: stateMachine.initialState,
+            regions: geoTable, // TODO: App will be started without any other region data but current location.
+            weatherList: [],
+            index: 0,
+        };
+        registerAnimation();
     }
 
     /**
@@ -40,40 +44,46 @@ export default class Scene extends React.Component {
      * @param {*} geo : coordinates
      */
     _getWeather = async (geo) => {
-        const { data: { name: region,
-            clouds: { all: cloudiness },
-            main: { humidity, temp, temp_max, temp_min },
-            dt: forecast,
-            timezone,
-            sys: { country, sunrise, sunset },
-            visibility,
-            weather: [{ description, main, id }],
-            wind } }
-            = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${geo.lat}&lon=${geo.lon}&APPID=${API_KEY}&units=metric`);
+        try{
 
-        // reconstruct an weather object
-        const data = {
-            country,
-            region,
-            altitude: parseInt(geo.alt),
-            weather: { main, id, description },
-            temperature: {},
-            humidity,
-            cloudiness, // % (percent)
-            visibility: visibility / 1000, // kilo-meter
-            wind,       // speed: meter/sec, deg: direction
-            dt: { timezone }
-        };
-        data.temperature.current = Math.round(temp);
-        data.temperature.min = temp_min;    // Maximum temperature at the moment. This is deviation from current temp.
-        data.temperature.max = temp_max;    // Minimum temperature at the moment. This is deviation from current temp.
-        data.dt.forecast = new Date(forecast * 1000);
-        data.dt.sunrise = new Date(sunrise * 1000);
-        data.dt.sunset = new Date(sunset * 1000);
-        data.dt.tod = this._getTOD(data.dt);
-        data.geocode = (geo.city==null)?{...geo, city:data.region}:geo;
-
-        return data;
+            const { data: { name: region,
+                clouds: { all: cloudiness },
+                main: { humidity, temp, temp_max, temp_min },
+                dt: forecast,
+                timezone,
+                sys: { country, sunrise, sunset },
+                visibility,
+                weather: [{ description, main, id }],
+                wind } }
+                = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${geo.lat}&lon=${geo.lon}&APPID=${API_KEY}&units=metric`);
+    
+            // reconstruct an weather object
+            const data = {
+                country,
+                region,
+                altitude: parseInt(geo.alt),
+                weather: { main, id, description },
+                temperature: {},
+                humidity,
+                cloudiness, // % (percent)
+                visibility: visibility / 1000, // kilo-meter
+                wind,       // speed: meter/sec, deg: direction
+                dt: { timezone }
+            };
+            data.temperature.current = Math.round(temp);
+            data.temperature.min = temp_min;    // Maximum temperature at the moment. This is deviation from current temp.
+            data.temperature.max = temp_max;    // Minimum temperature at the moment. This is deviation from current temp.
+            data.dt.forecast = new Date(forecast * 1000);
+            data.dt.sunrise = new Date(sunrise * 1000);
+            data.dt.sunset = new Date(sunset * 1000);
+            data.dt.tod = this._getTOD(data.dt);
+            data.geocode = (geo.city==null)?{...geo, city:data.region}:geo;
+    
+            return data;
+        } catch (e) {
+            // breaking promise sequence
+            throw new CustomError(ErrType.loadingWeather, e.message);
+        }
     }
     /**
      * Gets geo-location of device
@@ -92,8 +102,8 @@ export default class Scene extends React.Component {
 
             return { city:null, lat, lon };
         } catch (e) {
-            console.log(e.message);
-            Alert.alert(`Can't find you.\nSo sad.`);
+            // breaking promise sequence
+            throw new CustomError(ErrType.loadingLocation, e.message);
         }
     }
     /**
@@ -240,7 +250,17 @@ export default class Scene extends React.Component {
                     })
                     .catch(e => console.log(`error: ${e.message}`));
             })
-            .catch(e => console.log(e.message));
+            .catch(e => {
+                console.log(`[${e.name}] code:${e.code} - ${e.desc} (${e.date.toString()})\n${e.message}`);
+                Alert.alert(
+                    `${e.desc}`,
+                    `Do you want to exit?`,
+                    [
+                        {text: 'Retry', onPress: ()=> this._loadDataList(), style: 'cancel'},
+                        {text: 'Yes', onPress: ()=> BackHandler.exitApp()},
+                    ],
+                    { cancelable: false });
+            });
     }
     _addRegion = geo => {
         this.state.regions.push(geo);
@@ -303,6 +323,7 @@ export default class Scene extends React.Component {
         return scene;
     }
 
+    /* componentWillMount was deprecated in React v16 and will be removed after v17
     componentWillMount() {
         // Step.1 - Registers weather animations
         registerAnimation();
@@ -312,8 +333,10 @@ export default class Scene extends React.Component {
         this.state.regions = geoTable;
 
         // Step.3 - Loads weather data
+        // TODO: retry loading if return false
         this._loadDataList();
     }
+    */
 
     render() {
         return (
@@ -321,6 +344,7 @@ export default class Scene extends React.Component {
         );
     }
 
-    componentWillUnmount() {
+    componentDidMount() {
+        this._loadDataList();
     }
 }
