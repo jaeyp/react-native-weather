@@ -40,12 +40,12 @@ const containers = {
 
 /**
  * Loading Component
- * @param {*} data : times of day
+ * @param {*} props : times of day
  */
-export default function Loading(data) {
+export default function Loading(props) {
     return (
-        <LinearGradient colors={gradientTable[data.tod].gradient} style={styles.container}>
-        {containers.SunNMoon(data.tod)}
+        <LinearGradient colors={gradientTable[props.tod].gradient} style={styles.container}>
+        {containers.SunNMoon(props.tod)}
         {containers.Message('Now Loading')}
         {containers.Clouds()}
         </LinearGradient>
