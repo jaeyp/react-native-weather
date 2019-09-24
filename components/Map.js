@@ -114,7 +114,7 @@ class Map extends React.Component {
                         mapType={MAP_TYPES.TERRAIN}
                         style={styles.map}
                         initialRegion={this.state.region}
-                        onRegionChange={region => this._onRegionChange(region)}
+                        onRegionChangeComplete={region => this._onRegionChange(region)}
                     />
                     {/*
                     <View style={[styles.square, styles.latlng]}>
