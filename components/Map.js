@@ -62,7 +62,7 @@ class Map extends React.Component {
         };
     }
     _zoomIn = () => {
-        this.map.animateToRegion(this._zoomInRegion());
+        this.mapview.animateToRegion(this._zoomInRegion());
     }
     _zoomOutCoordinate = () => {
         const region = this.state.region;
@@ -80,7 +80,7 @@ class Map extends React.Component {
         };
     }
     _zoomOut = () => {
-        this.map.animateToRegion(this._zoomOutRegion());
+        this.mapview.animateToRegion(this._zoomOutRegion());
     }
     _reverseGeocoding = async () => {
         let location = { latitude: this.state.region.latitude, longitude: this.state.region.longitude };
@@ -107,7 +107,9 @@ class Map extends React.Component {
                     <MapView
                         provider={this.props.provider}
                         ref={ref => {
-                            this.map = ref;
+                            // Refs provide a way to access DOM nodes or React elements created in the render method.
+                            // Note: Use the `ref` callback to store a reference to the MapView DOM
+                            this.mapview = ref;
                         }}
                         mapType={MAP_TYPES.TERRAIN}
                         style={styles.map}
@@ -148,7 +150,6 @@ class Map extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {/* TODO: reloading animation */}
                 <MaterialCommunityIcons name='target' size={32} color='black' />
             </View>
         );
