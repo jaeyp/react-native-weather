@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Loading from './Loading';
 import Weather from './Weather';
-import Map from './Map';
+import Map, { MapHook } from './Map';
 
 import registerAnimation from '../utilities/animations';
 import CustomError, { ErrType } from '../utilities/errors';
@@ -24,7 +24,7 @@ const stateMachine = {
 }
 
 /**
- * Scene Component
+ * Scene Component (HOC)
  */
 export default class Scene extends React.Component {
     constructor(props) {
@@ -45,7 +45,6 @@ export default class Scene extends React.Component {
      */
     _getWeather = async (geo) => {
         try{
-
             const { data: { name: region,
                 clouds: { all: cloudiness },
                 main: { humidity, temp, temp_max, temp_min },
@@ -310,7 +309,7 @@ export default class Scene extends React.Component {
                 />;
                 break;
             case 'map':
-                scene = <Map 
+                scene = <MapHook // or Map
                     style={{flex: 1}} 
                     geo={w.geocode}
                     fnAdd={this._addRegion}

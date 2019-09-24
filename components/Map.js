@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet,
     View,
@@ -16,6 +16,98 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+/**
+ * useMap Hook
+ * @param {*} props 
+ */
+const useMap = (props) => {
+    const mapview = useRef();
+    const [state, setState] = useState({
+        isLoading: false,
+        region: {
+            latitude: props.geo.lat,
+            longitude: props.geo.lon,
+            latitudeDelta: LATITUDE_DELTA * 32,
+            longitudeDelta: LONGITUDE_DELTA * 32,
+        }
+    });
+    const zoomIn = () => {
+        const region = { ...state.region, latitudeDelta: state.region.latitudeDelta / 8, longitudeDelta: state.region.longitudeDelta / 8 };
+        mapview.current.animateToRegion(region);
+    }
+    const zoomOut = () => {
+        const region = { ...state.region, latitudeDelta: state.region.latitudeDelta * 8, longitudeDelta: state.region.longitudeDelta * 8 };
+        mapview.current.animateToRegion(region);
+    }
+    const reverseGeocoding = async () => {
+        let location = { latitude: state.region.latitude, longitude: state.region.longitude };
+        let result = await Location.reverseGeocodeAsync(location);
+        let region = result[0].city;
+        let countryCode = result[0].isoCountryCode;
+        let street = result[0].street;
+        
+        Alert.alert(
+            'Do you want to add this location?',
+            `${(region == null) ? street : region}, ${countryCode}\n(${state.region.latitude.toPrecision(7)}, ${state.region.longitude.toPrecision(7)})`,
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                { text: 'OK', onPress: () => props.fnAdd({ city: region, lat: location.latitude, lon: location.longitude }) },
+            ],
+            { cancelable: false },
+        );
+    }
+    const addLoc = () => { reverseGeocoding() }
+    const cancel = () => { props.fnCancel() }
+    const map = { provider: props.provider, ref: mapview, mapType: MAP_TYPES.TERRAIN, style: styles.map, initialRegion: state.region, onRegionChangeComplete: region => setState({ ...state, region }) };
+    return { map, fn: { zoomIn, zoomOut, addLoc, cancel } };
+}
+
+/**
+ * Funtional Map Component with React Hooks
+ * @param {*} props 
+ */
+export const MapHook = (props) => {
+    const { map, fn } = useMap(props);
+    return (
+        <View style={styles.targetLine}>
+            <View style={styles.container}>
+                <MapView {...map} />
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        onPress={fn.zoomIn}
+                        style={[styles.bubble, styles.buttonSmall]}
+                    >
+                        <AntDesign style={styles.buttonZoom} name='pluscircleo' size={24} color='black' />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={fn.addLoc}
+                        style={[styles.square, styles.buttonBig]}
+                    >
+                        <Text style={styles.buttonText}>Add</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={fn.cancel}
+                        style={[styles.square, styles.buttonBig]}
+                    >
+                        <Text style={styles.buttonText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={fn.zoomOut}
+                        style={[styles.bubble, styles.buttonSmall]}
+                    >
+                        <AntDesign style={styles.buttonZoom} name='minuscircleo' size={24} color='black' />
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <MaterialCommunityIcons name='target' size={32} color='black' />
+        </View>
+    );
+}
+
+MapHook.propTypes = {
+    provider: ProviderPropType,
+};
 
 /**
  * Map Component
