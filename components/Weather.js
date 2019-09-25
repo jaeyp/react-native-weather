@@ -135,7 +135,7 @@ const containers = { // pure functions
  * @param {*} fnMap : open map
  * @param {*} fnRemove : remove the current region
  */
-export default class Weather extends React.Component {
+export default class Weather extends React.PureComponent {
     state = {
         isLoading: false,
         isEditing: false,

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Alert, AsyncStorage, BackHandler } from 'react-native';
+/* NOTE: shallowCompare is a legacy add-on. Use React.memo or React.PureComponent instead.
 import shallowCompare from 'react-addons-shallow-compare';
+*/
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
@@ -27,7 +29,7 @@ const stateMachine = {
 /**
  * Scene Component (HOC)
  */
-export default class Scene extends React.Component {
+export default class Scene extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -323,7 +325,7 @@ export default class Scene extends React.Component {
         return scene;
     }
 
-    /* componentWillMount was deprecated in React v16 and will be removed after v17
+    /* NOTE: componentWillMount was deprecated in React v16 and will be removed after v17
     componentWillMount() {
         // Step.1 - Registers weather animations
         registerAnimation();
@@ -338,18 +340,14 @@ export default class Scene extends React.Component {
     }
     */
 
-    /**
-     * If your React component’s render function is “pure” 
-     * (in other words, it renders the same result given the same props and state), 
-     * you can use this helper function for a performance boost in some cases.
-     */ 
+    /* NOTE: shallowCompare is a legacy add-on. Use React.memo or React.PureComponent instead.
     shouldComponentUpdate(nextProps, nextState) {
-        // this shallowCompare method returns true 
-        // when the values of a key in each object are not strictly equal
-        // by iterating on the keys of the objects.
-        // check ./utilities/tools.js for more details.
+        // This shallowCompare method returns true when the values of a key in each object
+        //      are not strictly equal by iterating on the keys of the objects.
+        // Check ./utilities/tools.js for more details.
         return shallowCompare(this, nextProps, nextState);
     }
+    */
 
     render() {
         return (

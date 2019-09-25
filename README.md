@@ -80,6 +80,11 @@ or
 ~$ yarn add react-native-geocoding
 ```
 
+* ~~shallowCompare~~
+```bash
+~$ yarn add react-addons-shallow-compare
+```
+
 ---  
 
 ## Setup

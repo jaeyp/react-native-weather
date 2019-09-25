@@ -126,7 +126,7 @@ MapHook.propTypes = {
 /**
  * Map Component
  */
-class Map extends React.Component {
+class Map extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
