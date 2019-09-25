@@ -27,7 +27,7 @@ const stateMachine = {
 }
 
 /**
- * Scene Component (HOC)
+ * Scene Component (pure HOC)
  */
 export default class Scene extends React.PureComponent {
     constructor(props) {
