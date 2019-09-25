@@ -1,16 +1,17 @@
 import React from 'react';
 import { Alert, AsyncStorage, BackHandler } from 'react-native';
+import shallowCompare from 'react-addons-shallow-compare';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 
-import Loading from './Loading';
-import Weather from './Weather';
-import Map, { MapHook } from './Map';
-
 import registerAnimation from '../utilities/animations';
 import CustomError, { ErrType } from '../utilities/errors';
 import { geoTable } from '../assets/dataTables';
+
+import Loading from './Loading';
+import Weather from './Weather';
+import Map, { MapHook } from './Map';
 
 const API_KEY = 'weather_key_from_openweathermap.org';
 
@@ -336,6 +337,19 @@ export default class Scene extends React.Component {
         this._loadDataList();
     }
     */
+
+    /**
+     * If your React component’s render function is “pure” 
+     * (in other words, it renders the same result given the same props and state), 
+     * you can use this helper function for a performance boost in some cases.
+     */ 
+    shouldComponentUpdate(nextProps, nextState) {
+        // this shallowCompare method returns true 
+        // when the values of a key in each object are not strictly equal
+        // by iterating on the keys of the objects.
+        // check ./utilities/tools.js for more details.
+        return shallowCompare(this, nextProps, nextState);
+    }
 
     render() {
         return (
