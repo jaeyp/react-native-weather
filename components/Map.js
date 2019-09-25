@@ -16,6 +16,7 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const ZOOM_STEP = 8;
 
 /**
  * useMap Hook
@@ -32,20 +33,12 @@ const useMap = (props) => {
             longitudeDelta: LONGITUDE_DELTA * 32,
         }
     });
-    const zoomIn = () => {
-        const region = { ...state.region, latitudeDelta: state.region.latitudeDelta / 8, longitudeDelta: state.region.longitudeDelta / 8 };
-        mapview.current.animateToRegion(region);
-    }
-    const zoomOut = () => {
-        const region = { ...state.region, latitudeDelta: state.region.latitudeDelta * 8, longitudeDelta: state.region.longitudeDelta * 8 };
-        mapview.current.animateToRegion(region);
-    }
     const reverseGeocoding = async () => {
         let location = { latitude: state.region.latitude, longitude: state.region.longitude };
         let result = await Location.reverseGeocodeAsync(location);
         let region = result[0].city;
-        let countryCode = result[0].isoCountryCode;
         let street = result[0].street;
+        let countryCode = result[0].isoCountryCode;
         
         Alert.alert(
             'Do you want to add this location?',
@@ -57,9 +50,30 @@ const useMap = (props) => {
             { cancelable: false },
         );
     }
+    const zoomIn = () => {
+        mapview.current.animateToRegion({ 
+            ...state.region, 
+            latitudeDelta: state.region.latitudeDelta / ZOOM_STEP, 
+            longitudeDelta: state.region.longitudeDelta / ZOOM_STEP 
+        });
+    }
+    const zoomOut = () => {
+        mapview.current.animateToRegion({ 
+            ...state.region, 
+            latitudeDelta: state.region.latitudeDelta * ZOOM_STEP, 
+            longitudeDelta: state.region.longitudeDelta * ZOOM_STEP 
+        });
+    }
     const addLoc = () => { reverseGeocoding() }
     const cancel = () => { props.fnCancel() }
-    const map = { provider: props.provider, ref: mapview, mapType: MAP_TYPES.TERRAIN, style: styles.map, initialRegion: state.region, onRegionChangeComplete: region => setState({ ...state, region }) };
+    const map = { 
+        provider: props.provider, 
+        ref: mapview, 
+        mapType: MAP_TYPES.TERRAIN, 
+        style: styles.map, 
+        initialRegion: state.region, 
+        onRegionChangeComplete: region => setState({ ...state, region }) 
+    };
     return { map, fn: { zoomIn, zoomOut, addLoc, cancel } };
 }
 
