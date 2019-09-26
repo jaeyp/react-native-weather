@@ -8,7 +8,7 @@
     "platforms": [
       "android"
     ],
-    "version": "0.3.0",
+    "version": "0.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
     "android": {
       "package": "com.apk.animated_weather",
       "config": { 
-        "googleMaps": { "apiKey": "your_google_apikey" } 
+        "googleMaps": { "apiKey": "your_google_apikey" }
       }
     }
   }
