@@ -20,6 +20,7 @@ const ZOOM_STEP = 8;
 
 /**
  * useMap Hook
+ *  Practice of React Hooks
  * @param {*} props 
  */
 const useMap = (props) => {
@@ -78,7 +79,8 @@ const useMap = (props) => {
 }
 
 /**
- * Funtional Map Component with React Hooks
+ * MapHook
+ *  Funtional Map Component having its state properties with React Hooks
  * @param {*} props 
  */
 export const MapHook = (props) => {

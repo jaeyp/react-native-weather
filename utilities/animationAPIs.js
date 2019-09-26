@@ -14,11 +14,9 @@ const getAniSunNMoonC = isNight => ani = isNight?'moon':'sun';
 const getAniSunNMoon = isNight => isNight?'moonRight':'sunLeft';
 const getDurationSunMoon = isNight => isNight?10000:30000;
 
-/** Icons
- *  water (Entypo), minus (Entypo), tint (FontAwesome), minus (FontAwesome), flash (FontAwesome), 
- *  md-snow (Ionicons), ios-star (Ionicons), star (AntDesign), dehaze (MaterialIcons), 
- *  line-weight (MaterialIcons), ios-moon (Ionicons), ms-moon (Ionicons), more-horizontal (Feather)
- *  blur-on (MaterialIcons), bubble-chart (MaterialIcons), blur (MaterialCommunityIcons)
+/**
+ * animation APIs
+ *  It draws weather animation according to given weather information id from openweathermap.org
  */
 export default animationAPIs = {
     200: isNight => { // thunderstorm with light rain

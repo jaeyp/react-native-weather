@@ -14,6 +14,9 @@ const containers = { // pure functions
     Animation: d => {
         return (
             <View style={styles.containerAnimation}>
+                {/* animation APIs
+                  *  It draws weather animation according to given weather information id from openweathermap.org
+                  */}
                 {animationAPIs[d.weather.id]((d.dt.tod == "Evening" || d.dt.tod == "BeforeNight" || d.dt.tod == "Midnight" || d.dt.tod == "AfterNight") ? true : false)}
             </View>
         );
